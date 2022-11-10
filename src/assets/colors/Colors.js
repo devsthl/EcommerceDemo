@@ -1,0 +1,21 @@
+export default {
+    primary_color: 'red',
+    tab_active: 'red',
+    bottomNavColor: 'white',
+    backgroundScreen: '#F9FAFD',
+    white: 'white',
+    black: 'black',
+    borderColor: 'rgba(0, 0, 0, 0.05)',
+    inActiveText: 'rgba(34,34,34,0.54)',
+    blue: '#4285F4',
+    lighBlack: '#3E4345',
+    unTouchText: '#ABABAB',
+    red: 'red',
+    green: 'green',
+    gray: 'gray',
+    transparent: 'transparent',
+    titleItem: '#002DD',
+    fa: '#FAFAFA',
+    textLinkColor: '#0084F4',
+    lime: '#25AAE1'
+}
