@@ -1,5 +1,5 @@
 // export const baseURL = 'https://api-dev.fcare.club' // dev
-export const baseURL = 'https://fakestoreapi.com' // staging
+export const baseURL = 'https://api.ecommerce.smiletech.vn' // staging
 // export const baseURL = 'https://api.bookdi.vn' // production
 
 

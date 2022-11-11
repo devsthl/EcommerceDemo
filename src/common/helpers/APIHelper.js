@@ -1,7 +1,9 @@
+import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { baseURL, COMMON_MESSAGE, SESSION_EXPIRED } from "../constants/Constants"
 import { getUniqueId, getVersion, getBuildNumber, getSystemVersion, getModel } from "react-native-device-info"
 import { Platform } from "react-native";
+
 
 const camelize = require('camelize');
 const commonHeaders = {
@@ -11,9 +13,10 @@ const commonHeaders = {
     'os': Platform.OS,
     'version': getVersion() + '_' + getBuildNumber(),
     'osVersion': getSystemVersion(),
-    'model': getModel()
-}
+    'model': getModel(),
+    ecommerce_id: 69,
 
+}
 const paramsToString = (params) => {
     if (params != null) {
         var string = ''
@@ -46,15 +49,17 @@ export const APIHelper = {
     get: async (path, params, getRaw) => {
         const url = getURL(path, params)
         var headers = { ...commonHeaders }
-        const token = await AsyncStoragcomme.getItem('kToken')
+        const token = await AsyncStorage.getItem('kToken')
         if (token != null && !path.includes('/auth/api/')) {
             headers['Authorization'] = 'Bearer ' + token
         }
         try {
-            const response = await fetch(url, {
-                method: 'GET',
-                headers: headers,
-            });
+            const response = await fetch(url
+                , {
+                    method: 'GET',
+                    headers: headers,
+                }
+            );
             const statusCode = response.status
             if (statusCode == 401) {
                 throw { message: SESSION_EXPIRED, code: 401 }
@@ -98,11 +103,13 @@ export const APIHelper = {
             headers['Authorization'] = 'Bearer ' + token
         }
         try {
-            const response = await fetch(url, {
-                method: 'POST',
-                headers: headers,
-                body: body != null ? (isNotJSON ? body : JSON.stringify(body)) : null
-            });
+            const response = await fetch(url
+                , {
+                    method: 'POST',
+                    headers: headers,
+                    body: body != null ? (isNotJSON ? body : JSON.stringify(body)) : null
+                }
+            );
             const statusCode = response.status
             console.log(statusCode)
             if (statusCode == 401) {

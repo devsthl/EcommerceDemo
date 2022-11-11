@@ -51,7 +51,7 @@ const LoginInput = ({ style, onPressLoginBtn }) => {
                         onPressLoginBtn(
                             username.trim().toLowerCase(),
                             password.trim().toLowerCase(),
-                            isRememberPass
+                            // isRememberPass
                         )
                 }}
             />
