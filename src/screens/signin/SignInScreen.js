@@ -2,7 +2,6 @@ import { View, Text, Pressable, StyleSheet, TouchableOpacity } from 'react-nativ
 import React, { useRef, useState } from 'react'
 import Colors from '../../assets/colors/Colors'
 import BaseView from '../components/BaseView'
-import LoginInput from '../auth/Login/conponents/Input'
 import { UserAPI } from '../../api/user/UserAPI'
 import InputShadow from '../../components/Input/InputShadow'
 import BaseButton from '../../components/button/baseButton'
@@ -11,7 +10,6 @@ import AsyncStorage from '@react-native-async-storage/async-storage'
 import camelize from 'camelize'
 import { useNavigation } from '@react-navigation/native'
 import dataLocal from '../../data/dataLocal'
-// import axios from 'axios'
 const SignInScreen = () => {
     const [isLoading, setLoading] = useState(false)
     const [isRememberPass, setIsRememberPass] = useState(false);
@@ -22,6 +20,9 @@ const SignInScreen = () => {
     //alert
     const [alertInfo, setAlertInfo] = useState(null);
     const navigation = useNavigation()
+    const onRegister = () => {
+        navigation.navigate('Register')
+    }
     const Login = async () => {
         // const res2 = await UserAPI.getProfile()
         // console.log("res2", res2);
@@ -46,8 +47,6 @@ const SignInScreen = () => {
         //         })
         //         if (response && response['accessToken'] != null) {
         //             await AsyncStorage.setItem('kToken', response.accessToken)
-
-
         //             navigation.navigate('HomeScreen')
         //         }
         //     } catch (error) {
@@ -61,11 +60,13 @@ const SignInScreen = () => {
         if (response.message === 'error') {
             console.log("dang nhap k thanh cong");
         } else {
-            AsyncStorage.setItem('kToken', JSON.stringify(response.data.accessToken))
-            AsyncStorage.setItem('info', JSON.stringify(response.data))
+            // AsyncStorage.setItem('kToken', JSON.stringify(response.data.accessToken))
+            // AsyncStorage.setItem('info', JSON.stringify(response.data))
             console.log("dang nhap thanh cong");
-            // console.log("dang nhap thanh cong", AsyncStorage.getItem('info'));
-            // navigation.navigate('Home')
+            // if (isRememberPass) dataLocal.saveAccount(username, password);
+            // dataLocal.saveInfoUser(response.data).then(() => {
+            navigation.navigate('Home')
+            // })
         }
     }
     return (
@@ -99,8 +100,10 @@ const SignInScreen = () => {
                             onChange={setIsRememberPass}
                             text='Remember Pass'
                         />
-                        <TouchableOpacity style={{ marginRight: 40 }}>
-                            <Text>Forgot Password</Text>
+                        <TouchableOpacity style={{ marginRight: 40 }}
+                            onPress={onRegister}
+                        >
+                            <Text>Register</Text>
                         </TouchableOpacity>
                     </View>
                     <BaseButton

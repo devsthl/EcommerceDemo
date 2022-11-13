@@ -1,6 +1,4 @@
-// export const baseURL = 'https://api-dev.fcare.club' // dev
 export const baseURL = 'https://api.ecommerce.smiletech.vn' // staging
-// export const baseURL = 'https://api.bookdi.vn' // production
 
 
 export const COMMON_MESSAGE = 'Đã có lỗi xảy ra. Xin vui lòng thử lại.';
@@ -18,7 +16,9 @@ export const PAYMENT_METHOD_DOMESTIC = 2;
 export const PAYMENT_METHOD_INTERNATIONAL = 3;
 export const PAYMENT_METHOD_COD = 4;
 
-// export const MERCHANT_WEB_LINK = 'https://merchant.bookdi.vn/';
-// export const SALES_RULER_LINK = 'https://bookdi.vn/intro/danh-cho-nguoi-ban';
-// export const REGULATIONS_LINK = 'https://bookdi.vn/intro/regulations';
-// export const POLICY_LINK = 'https://bookdi.vn/intro/policy'
+
+export default {
+    baseURL,
+    hostImageIsNull: 'https://picsum.photos/300/300?productId=',
+}
+
