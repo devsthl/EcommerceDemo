@@ -15,6 +15,7 @@ export const PAYMENT_METHOD_FOXPAY = 1;
 export const PAYMENT_METHOD_DOMESTIC = 2;
 export const PAYMENT_METHOD_INTERNATIONAL = 3;
 export const PAYMENT_METHOD_COD = 4;
+export const CLEAR_PROFILE = 1;
 
 
 export default {

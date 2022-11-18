@@ -9,6 +9,7 @@ import {
 import Colors from '../../assets/colors/Colors'
 import Styles from '../../base/Styles'
 
+
 const TabBar = ({
     tabStyle,
     titleStyle,
@@ -19,11 +20,12 @@ const TabBar = ({
     releaseTabColorText,
     decorationColor,
 }) => {
-    const renderItem = ((item, index) => {
+    const renderItem = (({ item, index }) => {
+        console.log(item, index);
         return (
             <TouchableOpacity
-                onPress={() => setIndex()}
-                style={[styles.tab, tabStyle]}>
+                onPress={() => setIndex(index)}
+                style={[styles.tab, tabStyle,]}>
                 <View
                     style={{
                         borderBottomWidth: tabIndex === index ? 2 : 0,
@@ -46,30 +48,35 @@ const TabBar = ({
                             fontSize: 15,
                         }, titleStyle
                         ]}>
-
+                        {item.title}
                     </Text>
                 </View>
-            </TouchableOpacity>
+            </TouchableOpacity >
         )
     })
     return (
-        <FlatList
-            style={[styles.container]}
-            data={listTitle}
-            renderItem={renderItem}
-            horizontal={true}
-            keyExtractor={item => `${item.title}${item.id}`} />
+        <View>
+            <FlatList
+                style={[styles.container]}
+                data={listTitle}
+                renderItem={renderItem}
+                horizontal={true}
+                keyExtractor={item => `${item.title}${item.id}`} />
+            {renderItem}
+        </View>
     )
 }
 const styles = StyleSheet.create({
     container: {
         flexDirection: 'row',
         width: Styles.constants.widthScreen,
+        // backgroundColor: Colors.red
     },
     tab: {
         height: 40,
         justifyContent: 'center',
         alignItems: 'center',
+        // backgroundColor: 'red'
     },
 });
 export default TabBar;

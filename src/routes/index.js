@@ -16,7 +16,8 @@ const RouterClass = () => {
                     component={SignInScreen} />
                 <Stack.Screen
                     name="Home"
-                    component={HomeScreen} />
+                    component={HomeScreen}
+                    initialParams={true} />
                 <Stack.Screen
                     name="Register"
                     component={RegisterScreen} />

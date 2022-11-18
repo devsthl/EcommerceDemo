@@ -2,15 +2,18 @@ import dataLocal from "../dataLocal";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { baseURL } from "../../common/constants/Constants";
 import AppConstants from '../../base/AppConstants'
-import { useNavigation } from "@react-navigation/native";
+// import { useNavigation } from "@react-navigation/native";
+import React from "react";
 import Constants from "../../common/constants/Constants";
-const navigation = useNavigation();
+import { navigationRef } from "../../routes/navigationUtils";
+
 export default {
     checkLogin(callback) {
         if (dataLocal.isLogin !== null) {
             return callback()
         } else {
-            return navigation.navigate('Login')
+            navigationRef.current?.navigate('Login')
+            // navigation.navigate('Login')
         }
     },
     stringNullOrEmpty(str) {

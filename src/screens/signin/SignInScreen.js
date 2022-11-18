@@ -10,6 +10,8 @@ import AsyncStorage from '@react-native-async-storage/async-storage'
 import camelize from 'camelize'
 import { useNavigation } from '@react-navigation/native'
 import dataLocal from '../../data/dataLocal'
+import axios from 'axios'
+import { useEffect } from 'react'
 const SignInScreen = () => {
     const [isLoading, setLoading] = useState(false)
     const [isRememberPass, setIsRememberPass] = useState(false);
@@ -24,35 +26,10 @@ const SignInScreen = () => {
         navigation.navigate('Register')
     }
     const Login = async () => {
-        // const res2 = await UserAPI.getProfile()
-        // console.log("res2", res2);
-        // usernameRef.current.blur()
-        // passwordRef.current.blur()
-        // if (username.trim().length > 0 && password.length > 0) {
-        //     const reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
-        //     const validated = reg.test(username)
-        //     if (!validated) {
-        //         setAlertInfo({
-        //             type: 'error',
-        //             message: 'Email không đúng định dạng vui lòng thử lại!',
-        //             secondaryActionTitle: 'Đóng'
-        //         })
-        //         return
-        //     }
-        //     setLoading(true)
-        //     try {
-        //         const response = await UserAPI.login({
-        //             user_name: username.trim().toLowerCase(),
-        //             password: password.trim().toLowerCase()
-        //         })
-        //         if (response && response['accessToken'] != null) {
-        //             await AsyncStorage.setItem('kToken', response.accessToken)
-        //             navigation.navigate('HomeScreen')
-        //         }
-        //     } catch (error) {
+        // const res = await UserAPI.getAll()
+        // console.log("res", res);
 
-        //     }
-        // }
+        //API1
         const response = await UserAPI.login({
             user_name: username.trim().toLowerCase(),
             password: password.trim().toLowerCase()
@@ -60,14 +37,16 @@ const SignInScreen = () => {
         if (response.message === 'error') {
             console.log("dang nhap k thanh cong");
         } else {
-            // AsyncStorage.setItem('kToken', JSON.stringify(response.data.accessToken))
+            AsyncStorage.setItem('kToken', JSON.stringify(response.data.accessToken))
             // AsyncStorage.setItem('info', JSON.stringify(response.data))
             console.log("dang nhap thanh cong");
-            // if (isRememberPass) dataLocal.saveAccount(username, password);
-            // dataLocal.saveInfoUser(response.data).then(() => {
-            navigation.navigate('Home')
-            // })
+            if (isRememberPass) dataLocal.saveAccount(username, password);
+            dataLocal.saveInfoUser(response.data).then(() => {
+                navigation.navigate('Home')
+            })
         }
+
+
     }
     return (
         <BaseView>
