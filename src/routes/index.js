@@ -5,6 +5,7 @@ import { NavigationContainer } from '@react-navigation/native'
 import SignInScreen from '../screens/signin/SignInScreen'
 import HomeScreen from '../screens/home'
 import RegisterScreen from '../screens/auth/Register'
+import OtpScreen from '../screens/auth/Otp'
 const RouterClass = () => {
     const Stack = createNativeStackNavigator();
     return (
@@ -21,6 +22,9 @@ const RouterClass = () => {
                 <Stack.Screen
                     name="Register"
                     component={RegisterScreen} />
+                <Stack.Screen
+                    name="Otp"
+                    component={OtpScreen} />
             </Stack.Navigator>
         </NavigationContainer>
     )

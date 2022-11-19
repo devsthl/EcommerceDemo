@@ -9,6 +9,9 @@ export const UserAPI = {
     },
     register: async (data) => {
         return await APIHelper.post('/users/register', null, data)
+    },
+    checkOtp: async (data) => {
+        return await APIHelper.post('/users/verify-email', null, data)
     }
     // getAll() {
     //     try {

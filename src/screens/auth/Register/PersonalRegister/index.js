@@ -4,26 +4,26 @@ import ListInput from '../components/ListInput'
 import { useNavigation } from '@react-navigation/native'
 import { UserAPI } from '../../../../api/user/UserAPI'
 const PersonalRegister = (
-    full_name,
-    password,
-    date_of_birth,
-    gender,
-    user_name,
-    phone,
-    avatar,
-    store_id
+    // full_name,
+    // password,
+    // date_of_birth,
+    // gender,
+    // user_name,
+    // phone,
+    // avatar,
+    // store_id
 ) => {
     const navigation = useNavigation()
     const [code, steCode] = useState('');
     const [visible, setVisible] = useState(false);
     const register = async (data) => {
-        const res = await UserAPI.register({
-            user_name: data?.email,
-            full_name: data?.full_name,
-            password: data?.password,
-            phone: data?.phoneNumber
-        })
-        console.log("check register:", res);
+        const res = await UserAPI.register(getBody(data))
+        if (res.code === 0 && res.message === 'Success') {
+            navigation.navigate('Otp', {
+                user_name: res.data.user_name,
+                password: data?.password
+            })
+        }
     }
 
     const getBody = (data) => {
@@ -33,7 +33,7 @@ const PersonalRegister = (
             password: data?.password,
             phone: data?.phoneNumber
         }
-        return body
+        return body;
     }
     return (
         <>
@@ -41,7 +41,9 @@ const PersonalRegister = (
                 onCancel={() => {
                     navigation.navigate('Login')
                 }}
-                onConfirm={register} />
+                onConfirm={register}
+                type={'personal'}
+            />
         </>
     )
 }
