@@ -13,12 +13,4 @@ export const UserAPI = {
     checkOtp: async (data) => {
         return await APIHelper.post('/users/verify-email', null, data)
     }
-    // getAll() {
-    //     try {
-    //         const url = `/events`;
-    //         return axiosClient.get(url);
-    //     } catch (error) {
-    //         console.log("error", error);
-    //     }
-    // },
 }

@@ -35,7 +35,6 @@ const ListInput = ({ onCancel, onConfirm, type }) => {
                 data={data}
                 setData={setData}
                 onFocus={() => {
-
                     if (index > 5) {
                         listRef.current?.scrollToOffset({ offset: 84 * (index - 4) });
                     } else if (index == 5) listRef.current?.scrollToOffset({ offset: 40 });
@@ -85,7 +84,7 @@ const ListInput = ({ onCancel, onConfirm, type }) => {
                                 onPress={() => {
                                     if (onConfirm) onConfirm(data)
                                 }}
-                                disable={!validated}
+                            // disable={!validated}
                             />
                         </View>
                         <View style={{ height: keyboardMargin }}></View>

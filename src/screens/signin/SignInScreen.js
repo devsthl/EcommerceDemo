@@ -32,7 +32,7 @@ const SignInScreen = () => {
         //API1
         const response = await UserAPI.login({
             user_name: username.trim().toLowerCase(),
-            password: password.trim().toLowerCase()
+            password: password
         })
         if (response.message === 'error') {
             console.log("dang nhap k thanh cong");

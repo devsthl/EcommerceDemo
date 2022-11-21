@@ -9,28 +9,31 @@ import OTPInputView from '@twotalltotems/react-native-otp-input'
 import { ActivityIndicator } from 'react-native-paper'
 const OtpScreen = ({
     user_name,
-    password
+    password,
+    route,
 }) => {
+    console.log("route: ", route);
     const [checking, setChecking] = useState(false);
     const handleChangeCode = async (code) => {
         if (code.length === 6) {
             setChecking(true);
             console.log("checking");
             const res = await UserAPI.checkOtp({
+                user_name: route.params.user_name.trim().toLowerCase(),
                 otp: code
             })
             if (res.message === 'error') {
                 console.log("check otp k thanh cong");
             } else {
+                console.log("success");
                 Login();
             }
         }
     }
     const Login = async () => {
-
         const response = await UserAPI.login({
-            user_name: user_name.trim().toLowerCase(),
-            password: password.trim().toLowerCase()
+            user_name: route.params.user_name.trim().toLowerCase(),
+            password: route.params.password
         })
         if (response.message === 'error') {
             console.log("dang nhap k thanh cong");

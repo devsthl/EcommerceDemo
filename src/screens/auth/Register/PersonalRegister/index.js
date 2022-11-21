@@ -4,14 +4,14 @@ import ListInput from '../components/ListInput'
 import { useNavigation } from '@react-navigation/native'
 import { UserAPI } from '../../../../api/user/UserAPI'
 const PersonalRegister = (
-    // full_name,
-    // password,
-    // date_of_birth,
-    // gender,
-    // user_name,
-    // phone,
-    // avatar,
-    // store_id
+    full_name,
+    password,
+    date_of_birth,
+    gender,
+    user_name,
+    phone,
+    avatar,
+    store_id,
 ) => {
     const navigation = useNavigation()
     const [code, steCode] = useState('');
@@ -20,9 +20,10 @@ const PersonalRegister = (
         const res = await UserAPI.register(getBody(data))
         if (res.code === 0 && res.message === 'Success') {
             navigation.navigate('Otp', {
-                user_name: res.data.user_name,
+                user_name: res.data?.userName,
                 password: data?.password
             })
+            console.log("");
         }
     }
 
