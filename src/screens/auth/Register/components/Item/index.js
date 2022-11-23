@@ -43,7 +43,7 @@ const Item = ({
         return (
             <View>
                 <TextInputWithTitle
-                    keyboardType={'default'}
+                    // keyboardType={'decimal-pad'}
                     value={text}
                     onChangeText={onChangeText}
                     title={'Mật khẩu'}
@@ -81,7 +81,7 @@ const Item = ({
         return (
             <View>
                 <TextInputWithTitle
-                    keyboardType={'default'}
+                    keyboardType={'decimal-pad'}
                     value={text}
                     onChangeText={onChangeText}
                     title={'Địa chỉ'}
@@ -100,7 +100,7 @@ const Item = ({
     } else {
         return (
             <TextInputWithTitle
-                keyboardType={'default'}
+                keyboardType={'decimal-pad'}
                 value={text}
                 onChangeText={onChangeText}
                 title={`${item.name}`}

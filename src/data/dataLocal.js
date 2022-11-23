@@ -18,12 +18,12 @@ async function getAccessToken() {
     try {
         let value = await AsyncStorage.getItem(accessTokenKey);
         if (value === null || value === undefined) {
-            DataLocal.accessToken = null;
+            dataLocal.accessToken = null;
         } else {
-            DataLocal.accessToken = JSON.parse(value);
+            dataLocal.accessToken = JSON.parse(value);
         }
     } catch (e) {
-        DataLocal.accessToken = null;
+        dataLocal.accessToken = null;
         console.log(e);
     }
 }
@@ -38,13 +38,13 @@ async function getInfoUser() {
     try {
         let value = await AsyncStorage.getItem(userInfoKey);
         if (value === null || value === undefined) {
-            DataLocal.userInfo = null;
+            dataLocal.userInfo = null;
         } else {
-            DataLocal.userInfo = JSON.parse(value);
+            dataLocal.userInfo = JSON.parse(value);
         }
-        return DataLocal.userInfo
+        return dataLocal.userInfo
     } catch (e) {
-        DataLocal.userInfo = null;
+        dataLocal.userInfo = null;
         console.log(e);
     }
 }
@@ -60,12 +60,12 @@ async function getStatusLogin() {
     try {
         let value = await AsyncStorage.getItem(isLoginKey);
         if (value === null || value === undefined) {
-            DataLocal.isLogin = null;
+            dataLocal.isLogin = null;
         } else {
-            DataLocal.isLogin = JSON.parse(value);
+            dataLocal.isLogin = JSON.parse(value);
         }
     } catch (e) {
-        DataLocal.isLogin = null;
+        dataLocal.isLogin = null;
         console.log(e);
     }
 }
@@ -124,7 +124,7 @@ async function removeAll() {
     await removeAccessToken();
     await removeStatusLogin();
 }
-const DataLocal = {
+const dataLocal = {
     removeAll,
     getAll,
     getAccessToken,
@@ -142,4 +142,4 @@ const DataLocal = {
     removeAccount
 };
 
-export default DataLocal;
+export default dataLocal;

@@ -7,20 +7,42 @@ import Styles from '../../../base/Styles'
 import { UserAPI } from '../../../api/user/UserAPI'
 import OTPInputView from '@twotalltotems/react-native-otp-input'
 import { ActivityIndicator } from 'react-native-paper'
+import { useNavigation } from '@react-navigation/native'
+import AsyncStorage from '@react-native-async-storage/async-storage'
+import dataLocal from '../../../data/dataLocal'
+import BaseButton from '../../../components/button/baseButton'
 const OtpScreen = ({
     user_name,
     password,
     route,
 }) => {
-    console.log("route: ", route);
+    const navigation = useNavigation()
+    const [codeOTP, setCodeOTP] = useState();
     const [checking, setChecking] = useState(false);
-    const handleChangeCode = async (code) => {
-        if (code.length === 6) {
+    const [showbtn, setShowbtn] = useState(true)
+    // const handleChangeCode = async (code) => {
+    //     if (code.length === 6) {
+    //         setChecking(true);
+    //         console.log("checking");
+    //         const res = await UserAPI.checkOtp({
+    //             user_name: route.params.user_name.trim().toLowerCase(),
+    //             otp: code
+    //         })
+    //         if (res.message === 'error') {
+    //             console.log("check otp k thanh cong");
+    //         } else {
+    //             console.log("success");
+    //             Login();
+    //         }
+    //     }
+    // }
+    const confirm = async () => {
+        if (codeOTP.length === 6) {
             setChecking(true);
             console.log("checking");
             const res = await UserAPI.checkOtp({
-                user_name: route.params.user_name.trim().toLowerCase(),
-                otp: code
+                // user_name: route.params.user_name.trim().toLowerCase(),
+                otp: codeOTP
             })
             if (res.message === 'error') {
                 console.log("check otp k thanh cong");
@@ -31,30 +53,33 @@ const OtpScreen = ({
         }
     }
     const Login = async () => {
-        const response = await UserAPI.login({
+        const res = await UserAPI.login({
             user_name: route.params.user_name.trim().toLowerCase(),
             password: route.params.password
         })
-        if (response.message === 'error') {
+        if (res.message === 'error') {
             console.log("dang nhap k thanh cong");
         } else {
-            AsyncStorage.setItem('kToken', JSON.stringify(response.data.accessToken))
-            // AsyncStorage.setItem('info', JSON.stringify(response.data))
+            AsyncStorage.setItem('kToken', JSON.stringify(res.data.accessToken))
             console.log("dang nhap thanh cong");
-            if (isRememberPass) dataLocal.saveAccount(username, password);
-            dataLocal.saveInfoUser(response.data).then(() => {
-                navigation.navigate('Home')
+            dataLocal.saveAccount(user_name, password);
+            dataLocal.saveInfoUser(res.data).then(() => {
+                navigation.replace('Home')
             })
         }
+    }
+    const resend = async () => {
+        const res = await UserAPI.resend({
+            user_name: route.params.user_name
+        })
     }
     return (
         <View style={{ flex: 1, marginTop: 100 }}>
             <Text style={styles.text1}>
-                {/* {user_name} */}
                 Nhập mã OTP
             </Text>
             <Text style={styles.text2}>
-                {user_name}1
+                OTP đã gửi đến: {route.params.user_name}
             </Text>
             <OtpInputs
                 autofillFromClipboard
@@ -64,7 +89,8 @@ const OtpScreen = ({
                 }
                 numberOfInputs={6}
                 handleChange={code => {
-                    handleChangeCode(code);
+                    setCodeOTP(code);
+                    setShowbtn(false)
                 }}
             />
             <View
@@ -79,38 +105,49 @@ const OtpScreen = ({
                     }}>
                         Không nhận được mã?
                     </Text>
-                    <TouchableOpacity>
+                    <TouchableOpacity onPress={resend}>
                         <Text
                             style={styles.text3}
                         >Gửi lại mã</Text>
                     </TouchableOpacity>
                 </View>
                 <ActivityIndicator
-                    size='large'
+                    size='small'
                     animating={checking}
                     style={{
-                        marginTop: 40,
-
+                        marginTop: 10,
                     }} />
+            </View>
+            <View style={{
+                marginVertical: 10,
+                alignItems: 'center'
+            }}>
+                <BaseButton
+                    title={'Xác nhận'}
+                    style={styles.btn}
+                    textStyle={styles.btntext}
+                    disable={showbtn}
+                    onPress={confirm}
+                />
             </View>
         </View>
     )
 }
 const styles = StyleSheet.create({
     text1: {
-        ...Styles.text16,
-        fontWeight: '600',
+        ...Styles.text28,
+        fontWeight: '700',
         color: '#4F4F4F',
         width: '100%',
         textAlign: 'center',
         marginTop: Styles.constants.heightScreen / 15,
     },
     text2: {
-        ...Styles.text16,
+        ...Styles.text14,
         fontWeight: '600',
         color: Colors.black,
         alignSelf: 'center',
-        marginTop: 4,
+        marginTop: 10,
     },
     otpinput: {
         height: 'auto',
@@ -143,9 +180,17 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     view: {
-        flex: 1,
+        flex: 0.15,
         width: Styles.width,
         alignSelf: 'center'
+    },
+    btn: {
+        width: '70%',
+        alignItems: 'center',
+        backgroundColor: '#bc8d3b'
+    },
+    btntext: {
+        fontWeight: '700'
     }
 })
 export default OtpScreen

@@ -23,7 +23,6 @@ const PersonalRegister = (
                 user_name: res.data?.userName,
                 password: data?.password
             })
-            console.log("");
         }
     }
 

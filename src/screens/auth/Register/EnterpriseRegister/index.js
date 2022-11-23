@@ -11,7 +11,7 @@ const EnterpriseRegister = () => {
             <TouchableOpacity
                 onPress={onback}
             >
-                <Text>EnterpriseRegister123</Text>
+                <Text>EnterpriseRegister</Text>
             </TouchableOpacity>
         </View>
     )

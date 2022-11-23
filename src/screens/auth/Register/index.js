@@ -49,7 +49,6 @@ const RegisterScreen = () => {
                 // backgroundColor: 'red',
                 alignItems: 'flex-end', paddingRight: 20, marginTop: 30
             }}>
-                <Text>RegisterScreen</Text>
             </View>
             <TabView
                 navigationState={{ index, routes }}

@@ -8,7 +8,7 @@ const InputShadow = ({
     value,
     validate = true,
     onChangeText,
-    keyboardType = 'default',
+    keyboardType = 'decimal-pad',
     placeholder = '',
     inputStyle,
     containerStyle,

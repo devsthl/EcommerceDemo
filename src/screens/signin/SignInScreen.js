@@ -8,10 +8,11 @@ import BaseButton from '../../components/button/baseButton'
 import AppCheckBox from '../../components/AppCheckBox'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import camelize from 'camelize'
-import { useNavigation } from '@react-navigation/native'
 import dataLocal from '../../data/dataLocal'
-import axios from 'axios'
+import { useNavigation } from '@react-navigation/native'
 import { useEffect } from 'react'
+import { getAllEvents } from '../../store/Events/eventSlice'
+import { useDispatch } from 'react-redux'
 const SignInScreen = () => {
     const [isLoading, setLoading] = useState(false)
     const [isRememberPass, setIsRememberPass] = useState(false);
@@ -22,9 +23,13 @@ const SignInScreen = () => {
     //alert
     const [alertInfo, setAlertInfo] = useState(null);
     const navigation = useNavigation()
+    const dispatch = useDispatch()
     const onRegister = () => {
         navigation.navigate('Register')
     }
+    useEffect(() => {
+        dispatch(getAllEvents())
+    }, [2000])
     const Login = async () => {
         // const res = await UserAPI.getAll()
         // console.log("res", res);

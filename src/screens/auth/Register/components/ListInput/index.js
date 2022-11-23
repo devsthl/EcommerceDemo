@@ -84,7 +84,7 @@ const ListInput = ({ onCancel, onConfirm, type }) => {
                                 onPress={() => {
                                     if (onConfirm) onConfirm(data)
                                 }}
-                            // disable={!validated}
+                                disable={!validated}
                             />
                         </View>
                         <View style={{ height: keyboardMargin }}></View>
