@@ -7,6 +7,7 @@ import RegisterScreen from '../auth/Register'
 import Information from '../drawer/Information'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import Feather from 'react-native-vector-icons/Feather'
+import HomePresentation from './home/HomePresentation'
 const MainScreen = () => {
     const navigation = useNavigation();
     const Tab = createBottomTabNavigator();
@@ -16,7 +17,7 @@ const MainScreen = () => {
             screenOptions={{
                 headerShown: false,
                 tabBarShowLabel: false,
-                tabBarStyle: { backgroundColor: '#ad40af' },
+                tabBarStyle: { backgroundColor: '#61829e' },
                 tabBarInactiveTintColor: '#fff',
                 tabBarActiveTintColor: 'yellow',
 
@@ -24,7 +25,7 @@ const MainScreen = () => {
         >
             <Tab.Screen
                 name="Home"
-                component={Information}
+                component={HomePresentation}
                 options={{
                     tabBarIcon: ({ color, size }) => (
                         <Ionicons name="home-outline"

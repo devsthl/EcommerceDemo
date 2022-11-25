@@ -32,7 +32,7 @@ const ListInput = ({ onCancel, onConfirm, type }) => {
         return (
             <Item
                 item={item}
-                data={data}
+                // data={data}
                 setData={setData}
                 onFocus={() => {
                     if (index > 5) {

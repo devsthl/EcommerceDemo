@@ -81,4 +81,16 @@ export default {
         CUSTOMER_HAD_EXIST_BUT_NOT_ACTIVE: 'CUSTOMER_HAD_EXIST_BUT_NOT_ACTIVE',
         LOGIN_FAIL: 'LOGIN_FAIL'
     },
+    homeItemType: {
+        BANNER: 1,
+        PRODUCT_MENU: 2,
+        PRODUCT_BEST_SELLING: 3,
+        TITLE_SUGGEST: 4,
+        SUGGEST: 5,
+        END: 6,
+        COURSE: 7,
+        NEWS: 8,
+        EVENT: 9,
+        FIELD: 10,
+    },
 }

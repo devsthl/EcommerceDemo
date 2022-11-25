@@ -13,6 +13,8 @@ const X =
 const marginHorizontal = 32;
 const widthScreenMg24 = 24;
 const IS_IOS = Platform.OS === 'ios';
+const marginTopAll = X * 0.6;
+
 export default {
     IS_IOS: IS_IOS,
     IS_TABLET: DeviceInfo.isTablet(),
@@ -20,6 +22,7 @@ export default {
         widthScreen,
         heightScreen,
         X,
+        marginTopAll
     },
     X: X,
     marginHorizontal: marginHorizontal,

@@ -1,9 +1,9 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { EventsAPI } from '../../api/events/EventsAPI';
 
-export const getAllEvents = createAsyncThunk('getAllEvents', async ({ type, index, size }) => {
-    const res = await EventsAPI.getAll(type, index, size);
-    console.log("list events:", res);
+export const getAllEvents = createAsyncThunk('getAllEvents', async ({ type }) => {
+    const res = await EventsAPI.getAll(type);
+    // console.log("list events:", res.data);
     return res;
 })
 
@@ -23,7 +23,8 @@ const eventSlice = createSlice({
         },
         [getAllEvents.fulfilled]: (state, action) => {
             state.loadingEvent = false;
-            state.eventList = action.payload;
+            state.eventList = action.payload.data;
+            // console.log("data", action.payload.data);
         },
     }
 })
