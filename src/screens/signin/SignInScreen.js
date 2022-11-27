@@ -31,10 +31,6 @@ const SignInScreen = () => {
         dispatch(getAllEvents())
     }, [2000])
     const Login = async () => {
-        // const res = await UserAPI.getAll()
-        // console.log("res", res);
-
-        //API1
         const response = await UserAPI.login({
             user_name: username.trim().toLowerCase(),
             password: password
@@ -69,7 +65,7 @@ const SignInScreen = () => {
                     <InputShadow
                         value={password}
                         onChangeText={setPassword}
-                        placeholder='Pass Word'
+                        placeholder='Pass Words'
                         containerStyle={{ marginVertical: 10, }}
                         password
                     />

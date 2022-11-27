@@ -30,7 +30,8 @@ const TextInputWithTitle = ({
                     styles.codeInput,
                     {
                         backgroundColor: Colors.white,
-                        borderColor: Colors.borderColor,
+                        borderColor: Colors.blue,
+                        borderRadius: 10
                     },
                     inputStyle,
                 ]}
@@ -41,7 +42,6 @@ const TextInputWithTitle = ({
                 onFocus={() => {
                     if (onFocus) onFocus();
                 }}
-                // numberOfLines={lines}
                 multiline={lines > 1 ? true : false}
                 maxLength={maxLength}
                 secureTextEntry={password}

@@ -1,15 +1,15 @@
 import { View, Text } from 'react-native'
 import React, { useState, useEffect } from 'react'
-import HomeRow from '../HomeRow'
-import ItemFullWidth from '../ItemFullWidth/ItemFullWidth'
-import dataUltils from '../../../../../data/dataUltils'
-import DateUtils from '../../../../../utils/DateUtils'
+import HomeRow from '../main/home/component/HomeRow'
+import ItemFullWidth from '../main/home/component/ItemFullWidth/ItemFullWidth'
+import dataUltils from '../../data/dataUltils'
+import DateUtils from '../../utils/DateUtils'
 import { useNavigation } from '@react-navigation/native'
 import { useDispatch } from 'react-redux'
-import Styles from '../../../../../base/Styles'
-import Constants from '../../../../../common/constants/Constants'
+import Styles from '../../base/Styles'
+import Constants from '../../common/constants/Constants'
 import { useSelector } from 'react-redux'
-import { getAllEvents } from '../../../../../store/Events/eventSlice'
+import { getAllEvents } from '../../store/Events/eventSlice'
 const EventsRow = () => {
     const dispatch = useDispatch()
     const navigation = useNavigation()
@@ -23,7 +23,7 @@ const EventsRow = () => {
             setData(eventList)
             setLoading(false)
         }
-    }, [data])
+    }, [])
     // console.log("image:", eventList.imageUrl);
     const checkImage = (arrImage) => {
         if (arrImage === null) return null;
@@ -49,7 +49,9 @@ const EventsRow = () => {
             }
             index={index}
             onClick={() => {
-                navigation.navigate('Login')
+                navigation.navigate('EventsDetail', {
+                    item: item
+                })
             }}
         />
     );

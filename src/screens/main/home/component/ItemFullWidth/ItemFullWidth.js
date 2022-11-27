@@ -5,7 +5,7 @@ import Styles from '../../../../../base/Styles'
 import Colors from '../../../../../assets/colors/Colors'
 import AppConstants from '../../../../../base/AppConstants'
 import Constants from '../../../../../common/constants/Constants'
-const itemWidth = Styles.constants.widthScreen - 40;
+const itemWidth = Styles.constants.widthScreen - 60;
 const itemHeight = (itemWidth * 10) / 21;
 const imageWidth = (itemWidth * 10) / 27;
 const viewWidth = (itemWidth * 10) / 19;
@@ -61,6 +61,7 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.26,
         elevation: 2,
         width: itemWidth,
+        // width: 350,
         height: itemHeight,
         backgroundColor: Colors.tabWhite,
         flexDirection: 'row',

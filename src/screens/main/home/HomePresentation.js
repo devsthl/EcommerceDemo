@@ -4,7 +4,7 @@ import Header from './component/Header'
 import { useDispatch } from 'react-redux'
 import { getAllEvents } from '../../../store/Events/eventSlice'
 import AppConstants from '../../../base/AppConstants'
-import EventsRow from './component/Event'
+import EventsRow from '../../Event'
 import { FlatList } from 'react-native-gesture-handler'
 const HomePresentation = () => {
     const [data, setData] = useState([]);

@@ -35,6 +35,8 @@ export default {
     container: {
         flex: 1,
         backgroundColor: Colors.backgroundScreen,
+        flexDirection: 'column',
+
     },
     icons: {},
     toolbar: {
@@ -123,6 +125,11 @@ export default {
     text14: {
         fontSize: 14,
         fontWeight: '400',
+        color: Colors.textNormalColor,
+    },
+    text15: {
+        fontSize: 15,
+        fontWeight: '500',
         color: Colors.textNormalColor,
     },
     text16: {

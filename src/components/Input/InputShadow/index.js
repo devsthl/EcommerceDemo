@@ -1,4 +1,4 @@
-import { View, Text, Image, Pressable, StyleSheet, TextInput, TextStyle, ViewStyle } from 'react-native'
+import { View, Text, Image, Pressable, StyleSheet, TextInput, TextStyle, ViewStyle, TouchableOpacity } from 'react-native'
 import React, { useState } from 'react'
 import Colors from '../../../assets/colors/Colors';
 import Images from '../../../assets/images/Images';
@@ -8,7 +8,7 @@ const InputShadow = ({
     value,
     validate = true,
     onChangeText,
-    keyboardType = 'decimal-pad',
+    keyboardType = 'default',
     placeholder = '',
     inputStyle,
     containerStyle,

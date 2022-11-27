@@ -7,7 +7,7 @@ const LIMIT = 20;
 const HomeRow = ({
     data, loading, renderItem, title, onPressMore
 }) => {
-    console.log("render:", renderItem);
+    // console.log("render:", renderItem);
     const keyExtractor = (item, index) => `${item.name}${index.toString()}`
     return (
         <View>

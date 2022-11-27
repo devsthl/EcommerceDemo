@@ -3,7 +3,6 @@ import * as React from 'react'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { NavigationContainer } from '@react-navigation/native'
 import SignInScreen from '../screens/signin/SignInScreen'
-import HomeScreen from '../screens/home'
 import RegisterScreen from '../screens/auth/Register'
 import OtpScreen from '../screens/auth/Otp'
 import { createDrawerNavigator } from '@react-navigation/drawer'
@@ -11,7 +10,8 @@ import MainScreen from '../screens/main/MainScreen'
 import Information from '../screens/drawer/Information'
 import CustomDrawer from '../components/CustomDrawer/CustomDrawer'
 import Ionicons from 'react-native-vector-icons/Ionicons'
-
+import EventsDetail from '../screens/Event/Detail'
+import RegisterEventScreen from '../screens/Event/Register'
 const RouterClass = () => {
     const Stack = createNativeStackNavigator();
     const Drawer = createDrawerNavigator();
@@ -61,6 +61,12 @@ const RouterClass = () => {
                 <Stack.Screen
                     name="Login"
                     component={SignInScreen} />
+                <Stack.Screen
+                    name="EventsDetail"
+                    component={EventsDetail} />
+                <Stack.Screen
+                    name="RegisterEvent"
+                    component={RegisterEventScreen} />
                 <Stack.Screen
                     name="Home"
                     component={MainScreen} />
