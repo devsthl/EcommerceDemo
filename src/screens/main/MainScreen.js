@@ -4,7 +4,7 @@ import BaseView from '../components/BaseView'
 import { useNavigation } from '@react-navigation/native'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import RegisterScreen from '../auth/Register'
-import Information from '../drawer/Information'
+import Information from '../Infor'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import Feather from 'react-native-vector-icons/Feather'
 import HomePresentation from './home/HomePresentation'
@@ -12,7 +12,6 @@ const MainScreen = () => {
     const navigation = useNavigation();
     const Tab = createBottomTabNavigator();
     return (
-        // <BaseView>
         <Tab.Navigator
             screenOptions={{
                 headerShown: false,
@@ -20,11 +19,10 @@ const MainScreen = () => {
                 tabBarStyle: { backgroundColor: '#61829e' },
                 tabBarInactiveTintColor: '#fff',
                 tabBarActiveTintColor: 'yellow',
-
             }}
         >
             <Tab.Screen
-                name="Home"
+                name="Home5"
                 component={HomePresentation}
                 options={{
                     tabBarIcon: ({ color, size }) => (
@@ -61,7 +59,6 @@ const MainScreen = () => {
                     )
                 }} />
         </Tab.Navigator>
-        // </BaseView >
     )
 }
 

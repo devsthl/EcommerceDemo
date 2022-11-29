@@ -50,8 +50,9 @@ export const APIHelper = {
         const url = getURL(path, params)
         var headers = { ...commonHeaders }
         const token = await AsyncStorage.getItem('kToken')
-        if (token != null && !path.includes('/auth/api/')) {
-            headers['Authorization'] = 'Bearer ' + token
+        console.log("token", JSON.parse(token));
+        if (token != null) {
+            headers['Authorization'] = `Bearer ${JSON.parse(token)}`
         }
         try {
             const response = await fetch(url
@@ -100,7 +101,7 @@ export const APIHelper = {
         var headers = { ...commonHeaders }
         const token = await AsyncStorage.getItem('kToken')
         if (token != null && !path.includes('/auth/api/')) {
-            headers['Authorization'] = 'Bearer ' + token
+            headers['Authorization'] = `Bearer ${JSON.parse(token)}`
         }
         try {
             const response = await fetch(url
@@ -141,8 +142,8 @@ export const APIHelper = {
         const url = getURL(path, params)
         var headers = { ...commonHeaders }
         const token = await AsyncStorage.getItem('kToken')
-        if (token != null && !path.includes('/auth/api/')) {
-            headers['Authorization'] = 'Bearer ' + token
+        if (token != null) {
+            headers['Authorization'] = `Bearer ${JSON.parse(token)}`
         }
         try {
             const response = await fetch(url, {
@@ -179,8 +180,8 @@ export const APIHelper = {
         const url = getURL(path, params)
         var headers = { ...commonHeaders }
         const token = await AsyncStorage.getItem('kToken')
-        if (token != null && !path.includes('/auth/api/')) {
-            headers['Authorization'] = 'Bearer ' + token
+        if (token != null) {
+            headers['Authorization'] = `Bearer ${JSON.parse(token)}`
         }
         try {
             const response = await fetch(url, {
@@ -217,8 +218,8 @@ export const APIHelper = {
         const url = getURL(path, params)
         var headers = { ...commonHeaders, 'Content-Type': 'multipart/form-data' }
         const token = await AsyncStorage.getItem('kToken')
-        if (token != null && !path.includes('/auth/api/')) {
-            headers['Authorization'] = 'Bearer ' + token
+        if (token != null) {
+            headers['Authorization'] = `Bearer ${JSON.parse(token)}`
         }
         var data = new FormData();
         data.append('file', { uri: imageURI, name: fileName, type: type }, fileName)

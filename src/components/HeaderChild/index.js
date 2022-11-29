@@ -7,7 +7,7 @@ const HeaderChild = ({
 }) => {
     const navigation = useNavigation()
     return (
-        <View style={styles.view2}>
+        <View style={[styles.view2]}>
             <View style={styles.view1}>
                 <TouchableOpacity onPress={() => navigation.goBack()}>
                     <Ionicons name='chevron-back' size={30} />
@@ -18,9 +18,7 @@ const HeaderChild = ({
                         fontWeight: '700'
                     }}>{title}</Text>
             </View>
-            <View>
-                <Text>{children}</Text>
-            </View>
+            {children}
         </View>
     )
 }

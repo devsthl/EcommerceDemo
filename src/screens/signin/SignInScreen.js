@@ -10,9 +10,11 @@ import AsyncStorage from '@react-native-async-storage/async-storage'
 import camelize from 'camelize'
 import dataLocal from '../../data/dataLocal'
 import { useNavigation } from '@react-navigation/native'
+import { StackActions, NavigationActions } from 'react-navigation'
 import { useEffect } from 'react'
 import { getAllEvents } from '../../store/Events/eventSlice'
 import { useDispatch } from 'react-redux'
+import ViewUtils from '../../utils/ViewUtils'
 const SignInScreen = () => {
     const [isLoading, setLoading] = useState(false)
     const [isRememberPass, setIsRememberPass] = useState(false);
@@ -37,13 +39,17 @@ const SignInScreen = () => {
         })
         if (response.message === 'error') {
             console.log("dang nhap k thanh cong");
+            ViewUtils.showAlertDialog('Log in failed')
         } else {
             AsyncStorage.setItem('kToken', JSON.stringify(response.data.accessToken))
-            // AsyncStorage.setItem('info', JSON.stringify(response.data))
+            AsyncStorage.setItem('info', JSON.stringify(response.data))
             console.log("dang nhap thanh cong");
+            ViewUtils.showAlertDialog('Log in success')
             if (isRememberPass) dataLocal.saveAccount(username, password);
             dataLocal.saveInfoUser(response.data).then(() => {
-                navigation.navigate('Home')
+                navigation.reset({
+                    routes: [{ name: 'Root' }],
+                })
             })
         }
 

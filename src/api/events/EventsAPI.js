@@ -8,6 +8,6 @@ export const EventsAPI = {
     },
     async registerEvent(data) {
         const url = `/bookings`;
-        return APIHelper.post(url)
+        return APIHelper.post(url, null, data)
     },
 }

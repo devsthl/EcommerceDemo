@@ -20,22 +20,7 @@ const OtpScreen = ({
     const [codeOTP, setCodeOTP] = useState();
     const [checking, setChecking] = useState(false);
     const [showbtn, setShowbtn] = useState(true)
-    // const handleChangeCode = async (code) => {
-    //     if (code.length === 6) {
-    //         setChecking(true);
-    //         console.log("checking");
-    //         const res = await UserAPI.checkOtp({
-    //             user_name: route.params.user_name.trim().toLowerCase(),
-    //             otp: code
-    //         })
-    //         if (res.message === 'error') {
-    //             console.log("check otp k thanh cong");
-    //         } else {
-    //             console.log("success");
-    //             Login();
-    //         }
-    //     }
-    // }
+
     const confirm = async () => {
         if (codeOTP.length === 6) {
             setChecking(true);

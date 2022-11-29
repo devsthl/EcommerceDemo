@@ -1,5 +1,5 @@
 import { View, Text, ImageBackground, Image, TouchableOpacity } from 'react-native'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import {
     DrawerContentScrollView,
     DrawerItemList
@@ -7,8 +7,30 @@ import {
     from '@react-navigation/drawer'
 import Images from '../../assets/images/Images'
 import Ionicons from 'react-native-vector-icons/Ionicons'
-
+import AsyncStorage from '@react-native-async-storage/async-storage'
+import { useNavigation } from '@react-navigation/native'
+import ViewUtils from '../../utils/ViewUtils'
+import { getProfile } from '../../store/User/userSlice'
+import { useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 const CustomDrawer = props => {
+    const dispatch = useDispatch()
+    const [isLoading, setIsloading] = useState(false)
+    const navigation = useNavigation()
+    const { userList } = useSelector((state) => state.UserReducer)
+    console.log('userList', userList);
+    useEffect(() => {
+        dispatch(getProfile())
+    }, [])
+    const Logout = async () => {
+        ViewUtils.showAlertDialog('Log out success', () => {
+            setIsloading(true)
+        })
+        await AsyncStorage.clear();
+        navigation.reset({
+            routes: [{ name: 'Root' }],
+        })
+    }
     return (
         <View style={{ flex: 1 }}>
             <DrawerContentScrollView {...props} contentContainerStyle={{
@@ -37,10 +59,10 @@ const CustomDrawer = props => {
                             alignItems: 'center'
                         }}>
                         <Ionicons name="share-social-outline" size={22} />
-                        <Text style={{ marginLeft: 5, fontSize: 18 }}>Chia sẻ thông tin của bạn</Text>
+                        <Text style={{ marginLeft: 5, fontSize: 18 }}>Share your information</Text>
                     </View>
                 </TouchableOpacity>
-                <TouchableOpacity>
+                <TouchableOpacity onPress={Logout}>
                     <View
                         style={{
                             flexDirection: 'row',
@@ -49,7 +71,7 @@ const CustomDrawer = props => {
                             marginTop: 5
                         }}>
                         <Ionicons name="exit-outline" size={22} />
-                        <Text style={{ marginLeft: 5, fontSize: 18 }}>Đăng xuất</Text>
+                        <Text style={{ marginLeft: 5, fontSize: 18 }}>Log out</Text>
                     </View>
                 </TouchableOpacity>
             </View>

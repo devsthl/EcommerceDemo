@@ -1,5 +1,4 @@
 import { APIHelper } from "../../common/helpers/APIHelper";
-// import axiosClient from "../../common/helpers/APIHelperAxios";
 export const UserAPI = {
     getProfile: async () => {
         return await APIHelper.get('/users', null, true)

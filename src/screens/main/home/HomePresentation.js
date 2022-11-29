@@ -46,7 +46,7 @@ const HomePresentation = () => {
     return (
         <View style={styles.wrapper}>
             <View>
-                <Header title={'TRANG CHỦ'} />
+                <Header title={'HOME'} />
             </View>
             <View>
                 <FlatList

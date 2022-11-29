@@ -1,12 +1,33 @@
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { useNavigation } from '@react-navigation/native'
 import Ionicons from 'react-native-vector-icons/Ionicons'
-import { useSafeAreaInsets } from 'react-native-safe-area-context'
+import { isUser } from '../../../../../utils/check'
+import { useDispatch } from 'react-redux'
+import AsyncStorage from '@react-native-async-storage/async-storage'
 const Header = ({ title }) => {
-    const insets = useSafeAreaInsets();
-
+    const dispatch = useDispatch()
     const navigation = useNavigation()
+    const [check, setcheck] = useState(false)
+
+    useEffect(() => {
+        async function fetchData() {
+            const res = await AsyncStorage.getItem('kToken')
+            if (res) {
+                setcheck(true)
+            } else {
+                setcheck(false)
+            }
+        }
+        fetchData()
+    }, [check])
+    const login = async () => {
+        if (check) {
+            navigation.navigate('Info')
+        } else {
+            navigation.navigate('Login')
+        }
+    }
     return (
         <View style={{
             flexDirection: 'row',
@@ -26,7 +47,7 @@ const Header = ({ title }) => {
                     fontSize: 20,
                     fontWeight: '700'
                 }}>{title}</Text>
-            <TouchableOpacity onPress={() => navigation.navigate('Login')}>
+            <TouchableOpacity onPress={login}>
                 <Ionicons name='person-outline' size={25} />
             </TouchableOpacity>
         </View>

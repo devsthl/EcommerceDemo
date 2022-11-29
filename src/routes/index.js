@@ -7,7 +7,7 @@ import RegisterScreen from '../screens/auth/Register'
 import OtpScreen from '../screens/auth/Otp'
 import { createDrawerNavigator } from '@react-navigation/drawer'
 import MainScreen from '../screens/main/MainScreen'
-import Information from '../screens/drawer/Information'
+import Information from '../screens/Infor'
 import CustomDrawer from '../components/CustomDrawer/CustomDrawer'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import EventsDetail from '../screens/Event/Detail'
@@ -29,7 +29,7 @@ const RouterClass = () => {
                     drawerInactiveTintColor: '#333'
                 }}>
                 <Drawer.Screen
-                    name="Trang chủ"
+                    name="Home"
                     component={MainScreen}
                     options={{
                         drawerIcon: ({ color }) => (
@@ -39,7 +39,7 @@ const RouterClass = () => {
                     }}
                 />
                 <Drawer.Screen
-                    name="Thông tin người dùng"
+                    name="Information"
                     component={Information}
                     options={{
                         drawerIcon: ({ color }) => (
@@ -68,8 +68,8 @@ const RouterClass = () => {
                     name="RegisterEvent"
                     component={RegisterEventScreen} />
                 <Stack.Screen
-                    name="Home"
-                    component={MainScreen} />
+                    name="Info"
+                    component={Information} />
                 <Stack.Screen
                     name="Register"
                     component={RegisterScreen} />

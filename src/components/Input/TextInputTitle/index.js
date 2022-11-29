@@ -17,10 +17,10 @@ const TextInputTitle = ({
                 style={[styles.textInput, inputStyle]}
                 placeholder={placeholder}
                 value={value}
-                // keyboardType={keyboardType === undefined ? 'email-address' : keyboardType}
+                keyboardType={keyboardType === undefined ? 'email-address' : keyboardType}
                 placeholderTextColor={Colors.textInput}
                 onChangeText={text => {
-                    onChange(text)
+                    if (onChange) onChange(text)
                 }}
                 maxLength={20}
             />
