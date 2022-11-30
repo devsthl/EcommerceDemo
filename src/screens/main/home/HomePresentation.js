@@ -37,8 +37,11 @@ const HomePresentation = () => {
 
     const renderItem = ({ item }) => {
         switch (item.type) {
+            case AppConstants.homeItemType.PRODUCT_MENU:
+                return <EventsRow />
             case AppConstants.homeItemType.EVENT:
                 return <EventsRow />
+
             default:
                 return null;
         }

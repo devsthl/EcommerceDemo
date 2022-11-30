@@ -58,7 +58,7 @@ const ListInput = ({ onCancel, onConfirm, type }) => {
                                 justifyContent: 'space-between',
 
                             }}>
-                            <BaseButton
+                            {/* <BaseButton
                                 title='Quay lại'
                                 style={{
                                     backgroundColor: Colors.white,
@@ -71,14 +71,14 @@ const ListInput = ({ onCancel, onConfirm, type }) => {
                                 onPress={() => {
                                     if (onCancel) onCancel(data)
                                 }}
-                            />
+                            /> */}
                             <BaseButton
                                 title={'Đăng ký'}
                                 style={{
                                     backgroundColor: validated ? Colors.blue : Colors.unTouchText,
                                     borderColor: Colors.white,
                                     borderWidth: 1,
-                                    width: 150
+                                    width: '100%'
                                 }}
                                 textStyle={{ color: Colors.white, fontWeight: '600' }}
                                 onPress={() => {

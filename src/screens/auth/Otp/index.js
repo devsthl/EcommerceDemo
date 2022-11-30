@@ -46,10 +46,13 @@ const OtpScreen = ({
             console.log("dang nhap k thanh cong");
         } else {
             AsyncStorage.setItem('kToken', JSON.stringify(res.data.accessToken))
+            AsyncStorage.setItem('info', JSON.stringify(res.data))
             console.log("dang nhap thanh cong");
             dataLocal.saveAccount(user_name, password);
             dataLocal.saveInfoUser(res.data).then(() => {
-                navigation.replace('Home')
+                navigation.reset({
+                    routes: [{ name: 'Root' }],
+                })
             })
         }
     }

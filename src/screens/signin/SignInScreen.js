@@ -43,6 +43,7 @@ const SignInScreen = () => {
         } else {
             AsyncStorage.setItem('kToken', JSON.stringify(response.data.accessToken))
             AsyncStorage.setItem('info', JSON.stringify(response.data))
+            console.log("data", response.data);
             console.log("dang nhap thanh cong");
             ViewUtils.showAlertDialog('Log in success')
             if (isRememberPass) dataLocal.saveAccount(username, password);

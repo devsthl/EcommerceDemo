@@ -1,7 +1,7 @@
 import { APIHelper } from "../../common/helpers/APIHelper";
 export const UserAPI = {
-    getProfile: async () => {
-        return await APIHelper.get('/users', null, true)
+    getProfile: async (id) => {
+        return await APIHelper.get(`/customers/${id}`, null, true)
     },
     login: async (data) => {
         return await APIHelper.post('/users/login', null, data)

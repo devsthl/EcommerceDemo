@@ -38,13 +38,12 @@ const RegisterEventScreen = ({
                 navigation.navigate('Home')
             })
         }
-        else {
-            ViewUtils.showAlertDialog('Registration failed', () => {
-                setIsLoading(false);
-            })
-        }
-
-        console.log('res', body);
+        // else {
+        //     ViewUtils.showAlertDialog('Registration failed', () => {
+        //         navigation.navigate('Home')
+        //     }
+        //     )
+        // }
     }
     return (
         <View>
@@ -69,7 +68,6 @@ const RegisterEventScreen = ({
                         }}>
                         <Text style={styles.text}>Register</Text>
                     </TouchableOpacity>
-
                 </ScrollView>
             </HeaderChild>
         </View >

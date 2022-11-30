@@ -1,9 +1,12 @@
-import { View, Text, Image } from 'react-native'
+import { View, Text, Image, TouchableOpacity } from 'react-native'
 import React from 'react'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import Images from '../../../assets/images/Images'
 import Styles from '../../../base/Styles'
+import Ionicons from 'react-native-vector-icons/Ionicons'
+import { useNavigation } from '@react-navigation/native'
 const BaseView = ({ children }) => {
+    const navigation = useNavigation()
     const insets = useSafeAreaInsets();
     return (
         <View
@@ -13,6 +16,13 @@ const BaseView = ({ children }) => {
                 marginTop: insets.top,
                 marginBottom: insets.bottom,
             }}>
+            <TouchableOpacity
+                style={{ margin: 5 }}
+                onPress={() => {
+                    navigation.goBack()
+                }}>
+                <Ionicons name="chevron-back" size={30} />
+            </TouchableOpacity>
             <Image
                 style={{
                     height: '100%',

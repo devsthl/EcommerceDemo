@@ -6,4 +6,5 @@ export default {
     //user_drawer
     image_background: require('./image/image_background.jpeg'),
     image_user: require('./image/user_profile.jpeg')
+
 }

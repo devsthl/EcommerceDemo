@@ -12,6 +12,8 @@ import CustomDrawer from '../components/CustomDrawer/CustomDrawer'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import EventsDetail from '../screens/Event/Detail'
 import RegisterEventScreen from '../screens/Event/Register'
+import AntDesign from 'react-native-vector-icons/AntDesign'
+import ListEventScreen from '../screens/Event/List'
 const RouterClass = () => {
     const Stack = createNativeStackNavigator();
     const Drawer = createDrawerNavigator();
@@ -39,11 +41,31 @@ const RouterClass = () => {
                     }}
                 />
                 <Drawer.Screen
-                    name="Information"
+                    name="Events"
+                    component={ListEventScreen}
+                    options={{
+                        drawerIcon: ({ color }) => (
+                            <Ionicons name='ios-calendar-outline' size={22}
+                                color={color} />
+                        )
+                    }}
+                />
+                <Drawer.Screen
+                    name="News"
                     component={Information}
                     options={{
                         drawerIcon: ({ color }) => (
-                            <Ionicons name='person-outline' size={22}
+                            <Ionicons name='newspaper-outline' size={22}
+                                color={color} />
+                        )
+                    }}
+                />
+                <Drawer.Screen
+                    name="Documents"
+                    component={Information}
+                    options={{
+                        drawerIcon: ({ color }) => (
+                            <Ionicons name='newspaper-outline' size={22}
                                 color={color} />
                         )
                     }}
@@ -67,6 +89,9 @@ const RouterClass = () => {
                 <Stack.Screen
                     name="RegisterEvent"
                     component={RegisterEventScreen} />
+                <Stack.Screen
+                    name="ListEvents"
+                    component={ListEventScreen} />
                 <Stack.Screen
                     name="Info"
                     component={Information} />

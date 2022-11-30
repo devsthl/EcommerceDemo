@@ -1,9 +1,9 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { UserAPI } from '../../api/user/UserAPI';
 
-export const getProfile = createAsyncThunk('getuser', async () => {
-    const res = await UserAPI.getProfile();
-    console.log('res', res);
+export const getProfile = createAsyncThunk('getuser', async (id) => {
+    const res = await UserAPI.getProfile(id);
+    // console.log('res', res);
     return res;
 })
 const userSlice = createSlice({

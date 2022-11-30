@@ -17,9 +17,7 @@ const EventsRow = () => {
     const [loading, setLoading] = useState(true);
     const { eventList } = useSelector((state) => state.eventReducer)
     useEffect(() => {
-        if (dispatch(getAllEvents({
-            type: 3
-        }))) {
+        if (dispatch(getAllEvents())) {
             setData(eventList)
             setLoading(false)
         }
@@ -63,7 +61,7 @@ const EventsRow = () => {
             setLoading={setLoading}
             renderItem={_renderItem}
             onPressMore={() => {
-                navigation.navigate('Login')
+                navigation.navigate('ListEvents')
             }}
         />
 

@@ -1,6 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 const accessTokenKey = 'ACCESS_TOKEN';
-const userInfoKey = 'USER_INFO';
+const userInfoKey = 'info';
 const isLoginKey = 'IS_LOGIN';
 const rememberPassKey = 'IS_REMEMBER_PASS'
 const isLogin = null;
