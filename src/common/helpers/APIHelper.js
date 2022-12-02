@@ -81,7 +81,7 @@ export const APIHelper = {
                     console.log('\n======')
                     console.log('URL: ', url)
                     console.log('Headers: ', headers)
-                    console.log('Response: ', responseJson)
+                    // console.log('Response: ', responseJson)
                     return responseJson
                 }
 

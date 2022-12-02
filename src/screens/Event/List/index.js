@@ -1,7 +1,7 @@
 import { View, Text, FlatList, TouchableOpacity } from 'react-native'
 import React from 'react'
 import HeaderChild from '../../../components/HeaderChild'
-import { getAllEventsWithPag } from '../../../store/Events/eventSlice'
+import { getAllEventsWithPag, getAllEvents } from '../../../store/Events/eventSlice'
 import { useDispatch } from 'react-redux'
 import { useEffect } from 'react'
 import Styles from '../../../base/Styles'
@@ -16,12 +16,9 @@ const ListEventScreen = () => {
     const [loading, setLoading] = useState(true);
     const navigation = useNavigation()
     const dispatch = useDispatch();
-    const { eventListWithPag } = useSelector((state) => state.eventReducer)
+    const { eventListWithPag, eventList } = useSelector((state) => state.eventReducer)
     useEffect(() => {
-        dispatch(getAllEventsWithPag({
-            index: 1,
-            size: 10,
-        }))
+        dispatch(getAllEvents())
         setLoading(false)
     }, [])
     const _renderItem = ({ item, index }) => {
@@ -79,7 +76,7 @@ const ListEventScreen = () => {
     return (
         <HeaderChild title={'Events List'}>
             <FlatList
-                data={eventListWithPag?.data}
+                data={eventList?.data}
                 renderItem={_renderItem}
                 ListFooterComponent={
                     <ActivityIndicator animating={loading} size="large" color="#00ff00" />

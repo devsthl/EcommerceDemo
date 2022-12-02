@@ -20,7 +20,6 @@ const ItemFullWidth = ({ item, index, title, image, onClick, des }) => {
             return 'https://picsum.photos/130/214?' + index;
         }
     };
-    // console.log("image:", image);
     return (
         <Ripple style={styles.ripple}
             onPress={() => {

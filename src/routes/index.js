@@ -12,8 +12,8 @@ import CustomDrawer from '../components/CustomDrawer/CustomDrawer'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import EventsDetail from '../screens/Event/Detail'
 import RegisterEventScreen from '../screens/Event/Register'
-import AntDesign from 'react-native-vector-icons/AntDesign'
 import ListEventScreen from '../screens/Event/List'
+import ItemProduct from '../screens/main/home/component/ItemProduct'
 const RouterClass = () => {
     const Stack = createNativeStackNavigator();
     const Drawer = createDrawerNavigator();
@@ -92,6 +92,9 @@ const RouterClass = () => {
                 <Stack.Screen
                     name="ListEvents"
                     component={ListEventScreen} />
+                <Stack.Screen
+                    name="List"
+                    component={ItemProduct} />
                 <Stack.Screen
                     name="Info"
                     component={Information} />

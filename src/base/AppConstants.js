@@ -1,13 +1,17 @@
 import Styles from "./Styles";
 import { Platform } from "react-native";
-
+// const isTablet = GlobalUtil.isTablet();
 const x = Styles.constants.X;
+const width = Styles.constants.X * 0.4;
+
 export default {
     LOG_TAG: '',
     IS_IOS: Platform.OS === 'ios',
     LIMIT: 30,
     TIME_OUT: 10000,
     DATE_FORMAT: 'DD-MM-YYYY',
+    // isTablet: isTablet,
+    defaultItemWidth: width,
     size9: 9,
     size10: 10,
     size11: 11,

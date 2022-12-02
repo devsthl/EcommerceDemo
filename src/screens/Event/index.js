@@ -22,11 +22,8 @@ const EventsRow = () => {
             setLoading(false)
         }
     }, [])
-    // console.log("image:", eventList.imageUrl);
-    const checkImage = (arrImage) => {
-        if (arrImage === null) return null;
-        else return Constants.baseURL + arrImage[0]?.url;
-    };
+    // console.log('event:', eventList.data);
+
     const _renderItem = ({ item, index }) => (
         <ItemFullWidth
             item={item}
@@ -55,7 +52,7 @@ const EventsRow = () => {
     );
     return (
         <HomeRow
-            data={eventList?.data}
+            data={eventList.data}
             loading={loading}
             title={'Events'}
             setLoading={setLoading}

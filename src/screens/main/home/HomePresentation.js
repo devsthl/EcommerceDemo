@@ -1,11 +1,10 @@
 import { View, Text, StyleSheet } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import Header from './component/Header'
-import { useDispatch } from 'react-redux'
-import { getAllEvents } from '../../../store/Events/eventSlice'
 import AppConstants from '../../../base/AppConstants'
 import EventsRow from '../../Event'
 import { FlatList } from 'react-native-gesture-handler'
+import Products from '../../Product'
 const HomePresentation = () => {
     const [data, setData] = useState([]);
     const defaultData = [
@@ -38,9 +37,10 @@ const HomePresentation = () => {
     const renderItem = ({ item }) => {
         switch (item.type) {
             case AppConstants.homeItemType.PRODUCT_MENU:
-                return <EventsRow />
+                return <Products />
             case AppConstants.homeItemType.EVENT:
                 return <EventsRow />
+
 
             default:
                 return null;
@@ -56,7 +56,6 @@ const HomePresentation = () => {
                     data={defaultData}
                     showsVerticalScrollIndicator={false}
                     horizontal={false}
-                    // refreshing={refreshing}
                     renderItem={renderItem}
                     ListFooterComponent={() => {
                         return (
