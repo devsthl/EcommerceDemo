@@ -30,6 +30,9 @@ const ItemProduct = ({
             return itemWidth
         }
     }
+    const lastprice = () => {
+        return price * ((100 - ProductUtils.getPercent(item)) / 100)
+    }
     return (
         <Ripple style={[styles.ripple, { width: getItemWidth() }]}
             onPress={() => {
@@ -56,7 +59,8 @@ const ItemProduct = ({
                 justifyContent: 'space-between',
                 padding: 20
             }}>
-                <Text style={styles.price}>{CurrencyFormatter(price)}</Text>
+                <Text style={styles.price}>{CurrencyFormatter(lastprice())}
+                </Text>
                 <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                     <Text style={[Styles.text12, { color: Colors.tabBlack }]}>
                         {
@@ -70,7 +74,7 @@ const ItemProduct = ({
                 </View>
             </View>
             <Text
-                style={{ marginLeft: 20, marginBottom: 10 }}
+                style={{ marginLeft: 20, marginBottom: 10, color: 'red' }}
             >
                 {`-${ProductUtils.getPercent(item)}%`}
             </Text>

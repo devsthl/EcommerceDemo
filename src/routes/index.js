@@ -13,7 +13,10 @@ import Ionicons from 'react-native-vector-icons/Ionicons'
 import EventsDetail from '../screens/Event/Detail'
 import RegisterEventScreen from '../screens/Event/Register'
 import ListEventScreen from '../screens/Event/List'
-import ItemProduct from '../screens/main/home/component/ItemProduct'
+import ProductDetail from '../screens/Product/ProductDetail'
+import ProductsList from '../screens/Product/ProductsList'
+
+
 const RouterClass = () => {
     const Stack = createNativeStackNavigator();
     const Drawer = createDrawerNavigator();
@@ -93,8 +96,11 @@ const RouterClass = () => {
                     name="ListEvents"
                     component={ListEventScreen} />
                 <Stack.Screen
-                    name="List"
-                    component={ItemProduct} />
+                    name="ProductsList"
+                    component={ProductsList} />
+                <Stack.Screen
+                    name="ProductDetail"
+                    component={ProductDetail} />
                 <Stack.Screen
                     name="Info"
                     component={Information} />

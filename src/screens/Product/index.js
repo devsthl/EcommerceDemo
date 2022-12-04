@@ -15,16 +15,13 @@ const Products = () => {
     const navigation = useNavigation()
     const [data, setData] = useState();
     const [loading, setLoading] = useState(true);
-    const { eventList } = useSelector((state) => state.eventReducer)
     const { productList } = useSelector((state) => state.productReducer)
     useEffect(() => {
         if (dispatch(getAllEvents())) {
-            setData(eventList)
             setLoading(false)
         }
         dispatch(getAllProduct())
     }, [])
-    // console.log('event:', eventList.data);
 
     const _renderItem = ({ item, index }) => (
         <ItemProduct
@@ -35,7 +32,9 @@ const Products = () => {
             name={item.name}
             index={index}
             onClick={() => {
-                navigation.navigate('Login')
+                navigation.navigate('ProductDetail', {
+                    item: item
+                })
             }}
         />
     )
@@ -47,8 +46,7 @@ const Products = () => {
             setLoading={setLoading}
             renderItem={_renderItem}
             onPressMore={() => {
-                navigation.navigate('ListEvents', {
-                    item: item
+                navigation.navigate('ProductsList', {
                 })
             }}
         />

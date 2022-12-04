@@ -97,4 +97,15 @@ export default {
         EVENT: 9,
         FIELD: 10,
     },
+    detailItemType: {
+        BANNER: 1,
+        DES_PRODUCT: 2,
+        STORE_INFO: 3,
+        PRODUCT_REVIEWS: 4,
+        OTHER: 5,
+        SUGGEST: 6,
+        TITLE_SUGGEST: 7,
+        PRODUCT: 8,
+        END: 9,
+    },
 }
