@@ -11,7 +11,9 @@ const X =
     (widthScreen < heightScreen ? widthScreen : heightScreen) /
     (screenSizeByInch < 7 ? 9.25 : 12);
 const marginHorizontal = 32;
-const widthScreenMg24 = 24;
+const marginHorizontalAll = X * 0.6;
+const marginHorizontal20 = X * 0.47;
+const widthScreenMg24 = widthScreen - marginHorizontalAll * 2;
 const IS_IOS = Platform.OS === 'ios';
 const marginTopAll = X * 0.6;
 
@@ -22,6 +24,7 @@ export default {
         widthScreen,
         heightScreen,
         X,
+        widthScreenMg24,
         marginTopAll
     },
     X: X,

@@ -5,6 +5,7 @@ import HeaderChild from '../../../components/HeaderChild'
 import BannerProduct from './components/BannerProduct'
 import { FlatList } from 'react-native-gesture-handler'
 import InfoProduct from './components/InfoProduct'
+import StoreRow from './components/StoreRow'
 const ProductDetail = ({
     route, item
 }) => {
@@ -37,7 +38,8 @@ const ProductDetail = ({
                 return <BannerProduct item={route.params.item} />
             case AppConstants.detailItemType.DES_PRODUCT:
                 return <InfoProduct item={route.params.item} />
-
+            case AppConstants.detailItemType.STORE_INFO:
+                return <StoreRow item={route.params.item} />
             default:
                 return null;
         }
