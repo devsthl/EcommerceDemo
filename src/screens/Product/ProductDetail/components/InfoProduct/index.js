@@ -57,7 +57,6 @@ const InfoProduct = ({ item }) => {
                             }}>Description</Text>
                     </View>
                     {renderRow('Product Name: ', item.name)}
-                    {/* {renderRow('Introduce: ', item.des)} */}
                     {renderRow('Stock: ', item.quantity)}
                     {renderRow(item.property)}
                     {renderRow(item.features)}
@@ -66,24 +65,7 @@ const InfoProduct = ({ item }) => {
                     marginVertical: 20,
                     display: item.content === undefined ? 'none' : 'flex'
                 }}>
-                    {/* <TouchableOpacity style={{
-                        marginVertical: 10,
-                        fontWeight: '500',
-                        color: Colors.tabActive,
-                        fontSize: 16
-                    }}> */}
                     <Text>Contents: {item.content}</Text>
-                    {/* </TouchableOpacity> */}
-                    {/* {item?.content !== undefined && (
-                        <HTMLView
-                            value={`<body>${item?.content}<body>`}
-                            stylesheet={{
-                                body: {
-                                    color: Colors.tabBlack,
-                                }
-                            }}
-                        />
-                    )} */}
                 </View>
             </View>
         </View>

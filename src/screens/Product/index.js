@@ -3,13 +3,10 @@ import React from 'react'
 import HomeRow from '../main/home/component/HomeRow'
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect, useState } from 'react'
-import ItemFullWidth from '../main/home/component/ItemFullWidth/ItemFullWidth'
 import { getAllProduct } from '../../store/ProductSlice/productSlice'
 import ItemProduct from '../main/home/component/ItemProduct'
 import { useNavigation } from '@react-navigation/native'
 import { getAllEvents } from '../../store/Events/eventSlice'
-import Styles from '../../base/Styles'
-import DateUtils from '../../utils/DateUtils'
 const Products = () => {
     const dispatch = useDispatch()
     const navigation = useNavigation()

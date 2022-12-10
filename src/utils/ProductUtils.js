@@ -1,6 +1,6 @@
 import AppConstants from "../base/AppConstants"
 import DeviceInfo from 'react-native-device-info';
-
+import Constants from "../common/constants/Constants";
 export default {
     // converListToRowList(items, type) {
     //     let itemList = []; // Item trên cùng 1 hàng
@@ -18,4 +18,9 @@ export default {
         );
         return percent > 0 ? percent : 0;
     },
+    getStoreAvatar(image, index) {
+        if (image === null || image === undefined || image.length === 0) {
+            return { uri: 'https://picsum.photos/300/300?avatar=' + index }
+        } else return { uri: Constants.baseURL + image }
+    }
 }

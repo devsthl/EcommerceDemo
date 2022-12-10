@@ -108,4 +108,22 @@ export default {
         PRODUCT: 8,
         END: 9,
     },
+    SHIP_TYPE: {
+        GIAO_HANG_TIET_KIEM: 3,
+        GIAO_HANG_NHANH: 1,
+        GIAO_HANG_CHUAN: 2,
+    },
+    PAYMENT_TYPE: {
+        COD: 0,
+        CREDIT_CARD: 1,
+        ATM: 2,
+    },
+    CheckoutType: {
+        ADDRESS: 0,
+        LIST_PRODUCT: 1,
+        SHIP_FEE: 2,
+        VOUCHER: 4,
+        PAYMENT: 3,
+        INFO_PAYMENT: 5,
+    },
 }

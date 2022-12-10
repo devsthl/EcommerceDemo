@@ -2,6 +2,7 @@ import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
 import React from 'react'
 import { useNavigation } from '@react-navigation/native'
 import Ionicons from 'react-native-vector-icons/Ionicons'
+import Styles from '../../base/Styles'
 const HeaderChild = ({
     title, children
 }) => {
@@ -24,7 +25,8 @@ const HeaderChild = ({
 }
 const styles = StyleSheet.create({
     view2: {
-        flexDirection: 'column'
+        flexDirection: 'column',
+        marginBottom: Styles.constants.heightScreen * 0.175
     },
     view1: {
         flexDirection: 'row',
@@ -37,4 +39,4 @@ const styles = StyleSheet.create({
         paddingRight: 10,
     }
 })
-export default HeaderChild
+export default HeaderChild;

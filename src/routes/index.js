@@ -15,7 +15,8 @@ import RegisterEventScreen from '../screens/Event/Register'
 import ListEventScreen from '../screens/Event/List'
 import ProductDetail from '../screens/Product/ProductDetail'
 import ProductsList from '../screens/Product/ProductsList'
-
+import StoreId from '../screens/StoreId'
+import CheckOutScreen from '../screens/Product/ProductDetail/components/CheckOut'
 
 const RouterClass = () => {
     const Stack = createNativeStackNavigator();
@@ -101,6 +102,12 @@ const RouterClass = () => {
                 <Stack.Screen
                     name="ProductDetail"
                     component={ProductDetail} />
+                <Stack.Screen
+                    name='CheckOut'
+                    component={CheckOutScreen} />
+                <Stack.Screen
+                    name="StoreId"
+                    component={StoreId} />
                 <Stack.Screen
                     name="Info"
                     component={Information} />
