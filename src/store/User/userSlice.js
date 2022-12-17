@@ -3,13 +3,13 @@ import { UserAPI } from '../../api/user/UserAPI';
 
 export const getProfile = createAsyncThunk('getuser', async (id) => {
     const res = await UserAPI.getProfile(id);
-    // console.log('res', res);
     return res;
 })
 const userSlice = createSlice({
     name: 'user',
     initialState: {
         userList: [],
+        addressList: [],
         loadingUser: false,
     },
     reducers: {},

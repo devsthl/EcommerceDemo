@@ -3,7 +3,6 @@ import React from 'react'
 import { useState, useEffect } from 'react'
 import TextInputTitle from '../../../../../components/Input/TextInputTitle'
 import dataUltils from '../../../../../data/dataUltils'
-import TextInputWithTitle from '../../../../../components/Input/TextInputWithTitle'
 const InputFieldEvent = ({
     data, setData, checkValidateInput, style
 }) => {
@@ -76,7 +75,7 @@ const InputFieldEvent = ({
             />
             <TextInputTitle
                 title={'Your Email'}
-                keyboardType={'decimal-pad'}
+                keyboardType={'default'}
                 value={data.email}
                 onChange={onChangeEmail}
                 inputStyle={{ marginHorizontal: 20, marginTop: 15 }}
@@ -84,7 +83,7 @@ const InputFieldEvent = ({
             />
             <TextInputTitle
                 title={'Your Telephone Number'}
-                keyboardType={'default'}
+                keyboardType={'decimal-pad'}
                 value={data.phone}
                 onChange={onChangePhone}
                 inputStyle={{ marginHorizontal: 20, marginTop: 15 }}

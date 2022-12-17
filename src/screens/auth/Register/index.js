@@ -14,14 +14,14 @@ const key = {
 }
 
 const listTitle = [
-    { id: '1', title: 'Đăng ký cá nhân' },
-    { id: '0', title: 'Đăng ký doanh nghiệp' },
+    { id: '1', title: 'Persional Register' },
+    { id: '0', title: 'Enterprise Register' },
 ]
 const RegisterScreen = () => {
     const [index, setIndex] = useState(0);
     const [routes, setRoute] = useState([
-        { key: key.personal, title: 'Đăng ký cá nhân' },
-        { key: key.enterprise, title: 'Đăng ký doanh nghiệp' },
+        { key: key.personal, title: 'Persional Register' },
+        { key: key.enterprise, title: 'Enterprise Register' },
     ])
 
     const renderScene = SceneMap({

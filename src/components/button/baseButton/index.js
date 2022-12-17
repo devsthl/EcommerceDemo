@@ -19,7 +19,9 @@ const BaseButton = ({
             }}
         >
             <View style={[{
-                flex: 1, justifyContent: 'center',
+                flex: 1,
+                justifyContent: 'center',
+                // alignItems: 'center'
             }]}>
                 <Text style={[styles.text, textStyle]}>{title}</Text>
             </View>

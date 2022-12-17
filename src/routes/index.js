@@ -17,7 +17,7 @@ import ProductDetail from '../screens/Product/ProductDetail'
 import ProductsList from '../screens/Product/ProductsList'
 import StoreId from '../screens/StoreId'
 import CheckOutScreen from '../screens/Product/ProductDetail/components/CheckOut'
-
+import Address from '../screens/auth/Address'
 const RouterClass = () => {
     const Stack = createNativeStackNavigator();
     const Drawer = createDrawerNavigator();
@@ -105,6 +105,9 @@ const RouterClass = () => {
                 <Stack.Screen
                     name='CheckOut'
                     component={CheckOutScreen} />
+                <Stack.Screen
+                    name='createAddress'
+                    component={Address} />
                 <Stack.Screen
                     name="StoreId"
                     component={StoreId} />

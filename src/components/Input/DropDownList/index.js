@@ -44,6 +44,7 @@ const DropDown = ({
                                 <TouchableOpacity
                                     onPress={() => {
                                         setItemPicked(item);
+                                        setIsShowList(!isShowList)
                                         if (onSelectedItem) onSelectedItem(item);
                                     }}
                                     key={item}>

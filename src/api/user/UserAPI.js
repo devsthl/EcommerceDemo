@@ -14,5 +14,13 @@ export const UserAPI = {
     },
     resend: async (data) => {
         return await APIHelper.post('/users/verify-email', null, data)
+    },
+    async getAllAddress(data) {
+        const url = `/address/my-address`;
+        return APIHelper.get(url, data)
+    },
+    async createAddress(data) {
+        const url = `/address`;
+        return APIHelper.post(url, data)
     }
 }

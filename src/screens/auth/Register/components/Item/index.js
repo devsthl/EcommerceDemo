@@ -15,13 +15,23 @@ const Item = ({
     const onChangeText = (changeText) => {
         if (changeText === '') setValidate(false);
         else {
+            setValidate(validateInput(changeText.trim().toLowerCase(), item.name));
+        }
+        setText(changeText.trim().toLowerCase());
+        setData(data => {
+            return { ...data, [item.name]: changeText.trim().toLowerCase() };
+        });
+    };
+    const onChangePass = (changeText) => {
+        if (changeText === '') setValidate(false);
+        else {
             setValidate(validateInput(changeText, item.name));
         }
         setText(changeText);
         setData(data => {
             return { ...data, [item.name]: changeText };
         });
-    };
+    }
     if (item.name === 'none') {
         return (
             <View>
@@ -43,9 +53,9 @@ const Item = ({
         return (
             <View>
                 <TextInputWithTitle
-                    // keyboardType={'decimal-pad'}
+                    keyboardType={'default'}
                     value={text}
-                    onChangeText={onChangeText}
+                    onChangeText={onChangePass}
                     title={'Mật khẩu'}
                     validate={validate}
                     placeholder={`${item.example}`}
@@ -81,7 +91,7 @@ const Item = ({
         return (
             <View>
                 <TextInputWithTitle
-                    keyboardType={'decimal-pad'}
+                    // keyboardType={'decimal-pad'}
                     value={text}
                     onChangeText={onChangeText}
                     title={'Địa chỉ'}
@@ -100,7 +110,7 @@ const Item = ({
     } else {
         return (
             <TextInputWithTitle
-                keyboardType={'decimal-pad'}
+                keyboardType={'default'}
                 value={text}
                 onChangeText={onChangeText}
                 title={`${item.name}`}

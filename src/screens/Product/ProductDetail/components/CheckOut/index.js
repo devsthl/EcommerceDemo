@@ -1,12 +1,17 @@
-import { View, Text, FlatList } from 'react-native'
-import React, { useState } from 'react';
+import { View, Text, FlatList, TouchableOpacity } from 'react-native'
+import React, { useState, useEffect } from 'react';
 import AppConstants from '../../../../../base/AppConstants';
 import Styles from '../../../../../base/Styles';
 import Images from '../../../../../assets/images/Images';
 import HeaderChild from '../../../../../components/HeaderChild';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigation } from '@react-navigation/native';
 const CheckOutScreen = ({ route }) => {
+    const dispatch = useDispatch()
+    const navigation = useNavigation()
     const [loading, setLoading] = useState(true);
     const [loadingCheckout, setLoadingCheckout] = useState(false);
+
     const dataCard = [
         {
             id: AppConstants.PAYMENT_TYPE.COD,
@@ -39,11 +44,18 @@ const CheckOutScreen = ({ route }) => {
         },
     ]
     const renderAddress = () => {
+        // if (addressList === undefined || addressList.message === 'error') {
         return (
-            <View>
-                <Text>123</Text>
-            </View>
+            <TouchableOpacity onPress={() => {
+                navigation.navigate('createAddress', {
+                    item: route.params.item
+                })
+            }}>
+                <Text>Do not Address, please add your address</Text>
+            </TouchableOpacity>
         )
+        // }
+
     }
     const renderItem = ({ item }) => {
         switch (item.type) {

@@ -28,6 +28,7 @@ const ListInput = ({ onCancel, onConfirm, type }) => {
     useEffect(() => {
         setValidated(validateData(data, type))
     }, [data])
+    console.log("data register:", data);
     const renderItem = (({ item, index }) => {
         return (
             <Item
@@ -73,7 +74,7 @@ const ListInput = ({ onCancel, onConfirm, type }) => {
                                 }}
                             /> */}
                             <BaseButton
-                                title={'Đăng ký'}
+                                title={'Register'}
                                 style={{
                                     backgroundColor: validated ? Colors.blue : Colors.unTouchText,
                                     borderColor: Colors.white,
