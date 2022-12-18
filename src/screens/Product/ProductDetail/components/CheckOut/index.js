@@ -48,7 +48,7 @@ const CheckOutScreen = ({ route }) => {
         return (
             <TouchableOpacity onPress={() => {
                 navigation.navigate('createAddress', {
-                    item: route.params.item
+                    item: route.params?.item
                 })
             }}>
                 <Text>Do not Address, please add your address</Text>

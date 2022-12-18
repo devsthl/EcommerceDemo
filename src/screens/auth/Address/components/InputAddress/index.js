@@ -7,7 +7,6 @@ import { getAllDistrict, getAllWards, getAllCities } from '../../../../../store/
 import { useSelector } from 'react-redux'
 import DropDownPicker from 'react-native-dropdown-picker'
 import DropdownWithTitle from '../../../../../components/Input/DropdownWithTitle'
-import BaseButton from '../../../../../components/button/baseButton'
 const InputAddress = ({
     data, setData, checkValidateInput, style
 }) => {
@@ -15,7 +14,7 @@ const InputAddress = ({
     const { districtList, wardsList, citiesList } = useSelector((state) => state.addressReducer)
     const [fullName, setFullName] = useState(data.name);
     const [phone, setPhone] = useState(data.phone);
-    const [unit, setUnit] = useState()
+    const [unit, setUnit] = useState(data.unit)
     const [validateName, setValidateName] = useState(false);
     const [validatePhone, setValidatePhone] = useState(false);
     const [validateUnit, setValidateUnit] = useState(false)
@@ -54,9 +53,10 @@ const InputAddress = ({
         if (checkValidateInput)
             checkValidateInput(
                 !validateName &&
-                !validatePhone
+                !validatePhone &&
+                !validateUnit
             )
-    }, [fullName, phone])
+    }, [fullName, phone, unit])
     useEffect(() => {
         checkValidateInput(false)
     }, [])
@@ -88,11 +88,10 @@ const InputAddress = ({
             return prev
         })
         if (text === '') setValidateUnit(true)
-        else setValidateUnit(!dataUltils.validateName(text))
+        else setValidateUnit(!dataUltils.validateUnit(text))
     }
-    console.log('value: ', valueCity);
-    console.log('id: ', idCity);
-    // console.log('district: ', districtList);
+    console.log('data: ', data);
+    console.log('value: ', valueDistrict);
     return (
         <View style={[{ paddingHorizontal: 10 }, style]}>
             <TextInputTitle
@@ -111,14 +110,6 @@ const InputAddress = ({
                 inputStyle={{ marginHorizontal: 20, marginTop: 15 }}
                 onChange={onChangePhone}
             />
-            <TextInputTitle
-                title={'Your Unit (example: 14 Hong Phong Street)'}
-                keyboardType={'default'}
-                value={unit}
-                validate={validateUnit}
-                inputStyle={{ marginHorizontal: 20, marginTop: 15 }}
-                onChange={onChangeUnit}
-            />
             <DropdownWithTitle title={'Select Your City'} style={{ zIndex: 3 }}>
                 <DropDownPicker
                     open={openCity}
@@ -128,6 +119,14 @@ const InputAddress = ({
                     items={cities}
                     setValue={setValueCity}
                     onSelectItem={(item) => {
+                        setData({
+                            ...data,
+                            city: {
+                                id: item.value.id,
+                                name: item.value.name,
+                                ghn_id: item.value.ghnId
+                            }
+                        })
                         setIdCity(item.value.id)
                         dispatch(getAllDistrict(idCity))
                     }}
@@ -142,6 +141,14 @@ const InputAddress = ({
                     items={district}
                     setValue={setValueDistrict}
                     onSelectItem={(item) => {
+                        setData({
+                            ...data,
+                            district: {
+                                id: item.value.id,
+                                name: item.value.name,
+                                ghn_id: item.value.ghnId
+                            }
+                        })
                         setIdDistrict(item.value.id)
                         dispatch(getAllWards())
                     }}
@@ -159,6 +166,14 @@ const InputAddress = ({
                     placeholder={'Select an your Ward'}
                     setValue={setValueWard}
                     onSelectItem={(item) => {
+                        setData({
+                            ...data,
+                            ward: {
+                                id: item.value.id,
+                                name: item.value.name,
+                                ghn_id: item.value.ghnId
+                            }
+                        })
                         setIdWard(item.value.id)
                     }}
                     onPress={() => {
@@ -174,36 +189,8 @@ const InputAddress = ({
                 inputStyle={{ marginHorizontal: 20, marginTop: 15 }}
                 onChange={onChangeUnit}
             />
-            <View
-                style={{
-                    width: '100%',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    height: 100,
-                }}>
-                <BaseButton
-                    title={'Add'}
-                    style={styles.btn}
-                    textStyle={{
-                        fontSize: 16,
-                        color: 'gray',
-                        // justifyContent: 'center',
-                        // alignItems: 'center',
-                        fontWeight: '500'
-                    }}
-                />
-            </View>
         </View>
     )
 }
-const styles = StyleSheet.create({
-    btn: {
-        width: '89%',
-        height: '50%',
-        padding: 20,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: 'red'
-    }
-})
+
 export default InputAddress

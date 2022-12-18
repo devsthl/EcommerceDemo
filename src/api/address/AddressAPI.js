@@ -7,7 +7,7 @@ export const AddressAPI = {
     },
     async createAddress(data) {
         const url = `/address`;
-        return APIHelper.post(url, data)
+        return APIHelper.post(url, null, data)
     },
     async getAllCities(data) {
         const url = `/cities`;
