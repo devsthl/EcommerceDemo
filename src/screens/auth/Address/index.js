@@ -7,6 +7,7 @@ import { useEffect, useState } from 'react'
 import InputAddress from './components/InputAddress'
 import BaseButton from '../../../components/button/baseButton'
 import ViewUtils from '../../../utils/ViewUtils'
+import { ActivityIndicator } from 'react-native-paper'
 import { useNavigation } from '@react-navigation/native'
 const Address = ({ route }) => {
     const navigation = useNavigation()
@@ -38,6 +39,11 @@ const Address = ({ route }) => {
     console.log("data", data);
     return (
         <HeaderChild title={'Add Address'}>
+            <View style={[
+                styles.view1,
+                { zIndex: isLoading ? 100 : -100 }]}>
+                <ActivityIndicator animating={isLoading} size='large' color='#00ff00' />
+            </View>
             <InputAddress
                 data={data}
                 setData={setData}
@@ -75,6 +81,14 @@ const styles = StyleSheet.create({
         padding: 20,
         borderColor: '#61829e',
         backgroundColor: '#61829e'
-    }
+    },
+    view1: {
+        flexDirection: 'column',
+        position: 'absolute',
+        width: '100%',
+        height: '100%',
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
 })
 export default Address

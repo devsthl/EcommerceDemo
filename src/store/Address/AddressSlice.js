@@ -17,9 +17,15 @@ export const getAllWards = createAsyncThunk('getAllWards', async (id) => {
     // console.log("district:", res);
     return res;
 })
+export const getAllAddress = createAsyncThunk('getAllAddress', async () => {
+    const res = await AddressAPI.getAllAddress()
+    // console.log("address:", res.data);
+    return res;
+})
 const addressSlice = createSlice({
     name: 'address',
     initialState: {
+        addressList: [],
         citiesList: [],
         districtList: [],
         wardsList: [],
@@ -56,6 +62,16 @@ const addressSlice = createSlice({
         [getAllWards.fulfilled]: (state, action) => {
             state.loading = false;
             state.wardsList = action.payload.data;
+        },
+        [getAllAddress.pending]: (state, action) => {
+            state.loading = true;
+        },
+        [getAllAddress.rejected]: (state, action) => {
+            state.loading = false;
+        },
+        [getAllAddress.fulfilled]: (state, action) => {
+            state.loading = false;
+            state.addressList = action.payload.data;
         },
     }
 })

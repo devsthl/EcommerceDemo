@@ -2,7 +2,6 @@ import { View, Text, TouchableOpacity, StyleSheet, Image } from 'react-native'
 import React from 'react'
 import AppConstants from '../../../base/AppConstants'
 import HeaderChild from '../../../components/HeaderChild'
-import BannerProduct from './components/BannerProduct'
 import { FlatList } from 'react-native-gesture-handler'
 import InfoProduct from './components/InfoProduct'
 import StoreRow from './components/StoreRow'
@@ -14,27 +13,34 @@ import Fontisto from 'react-native-vector-icons/Fontisto'
 import Constants from '../../../common/constants/Constants'
 import CurrencyFormatter from '../../../utils/Formatter'
 import Ionicon from 'react-native-vector-icons/Ionicons'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useNavigation } from '@react-navigation/native'
+import { CartAPI } from '../../../api/cart/CartAPI'
+import { useDispatch, useSelector } from 'react-redux'
+import { getAllCart } from '../../../store/Cart/cartSlice'
 const ProductDetail = ({
     route, item
 }) => {
+    const dispatch = useDispatch()
     const navigation = useNavigation()
-    const [productData, setProductData] = useState({
-        name: '',
-        id: '',
-        image_url: '',
-        price: '',
-        size: '',
-        quantity: 1,
-        quantity_in_stock: '',
-        store: {
-            id: '',
-            name: '',
-            avatar: ''
-        },
-        total: ''
-    })
+
+    const { cartList } = useSelector((state) => state.cartReducer)
+
+    useEffect(() => {
+        const fetchdata = async () => {
+            let data = route.params.item;
+            const body = {
+                product_id: data.id,
+                quantity: 1,
+                store_id: data.store.id,
+                price: data.price
+            }
+            const res = await CartAPI.addCart(body)
+        }
+        fetchdata()
+        dispatch(getAllCart())
+    }, [1000])
+
     const defaultData = [
         {
             type: AppConstants.detailItemType.BANNER,
@@ -68,6 +74,9 @@ const ProductDetail = ({
             return 'https://picsum.photos/130/214?' + index;
         }
     }
+
+
+
     const renderItem = ({ item }) => {
         switch (item.type) {
             // case AppConstants.detailItemType.BANNER:
@@ -87,28 +96,14 @@ const ProductDetail = ({
                 return null;
         }
     }
-    const buyProduct = () => {
-        // let buy = []
-        // let product = route.params.item;
-        // setProductData({
-        //     ...productData,
-        //     name: product.name,
-        //     id: product.id,
-        //     image_url: product.imageUrl,
-        //     price: product.price,
-        //     quantity: product.quantity,
-        //     quantity_in_stock: product.totalSold,
-        //     total: product.quantity * product.price,
-        //     store: {
-        //         id: product.store.id,
-        //         name: product.store.name,
-        //         avatar: product.store.avatar
-        //     }
-        // })
-        // buy.push(productData)
-        navigation.navigate('CheckOut', {
-            item: route.params.item
-        })
+    // console.log("carttttt", cartList[0]?.products[0].id);
+    const buyProduct = async () => {
+        if (cartList) {
+            navigation.navigate('CheckOut', {
+                product: cartList[0]?.products,
+                item: route.params.item
+            })
+        }
         BuyViewBottom.close()
     }
     const renderBuyView = () => {
@@ -214,7 +209,6 @@ const ProductDetail = ({
                 ListFooterComponent={() => {
                     return (
                         <View>
-                            {/* {renderBuyView()} */}
                         </View>
                     )
                 }}
