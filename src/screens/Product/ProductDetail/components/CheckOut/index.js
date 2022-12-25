@@ -20,6 +20,7 @@ const CheckOutScreen = ({ route }) => {
     const [dataStore, setDataStore] = useState()
     const [loading, setLoading] = useState(true);
     const [loadingCheckout, setLoadingCheckout] = useState(false);
+    const [countPrice, setCountPrice] = useState();
     //redux store
     const { addressList } = useSelector((state) => state.addressReducer)
     const { storeById } = useSelector((state) => state.storeReducer)
@@ -60,7 +61,6 @@ const CheckOutScreen = ({ route }) => {
         dispatch(getStoreById(route.params.item.store.id))
     }, [])
 
-    // console.log("cart1", route.params.product);
     const renderAddress = () => {
         if (addressList === undefined || addressList.message === 'error') {
             return (
@@ -95,36 +95,52 @@ const CheckOutScreen = ({ route }) => {
     const renderListProduct = () => {
         getCountPrice()
     }
-    console.log('sfdfsf', route.params.product[0].height);
     const getCountPrice = async () => {
         let data = addressList[0]?.addressDetail
         let product = route.params.product[0]
+        let products = [{
+            height: product.height,
+            id: product.id,
+            id_order_detail: product.idOrderDetail,
+            id_order_detail: product.idOrderDetail,
+            length: product.length,
+            name: product.name,
+            price: product.price,
+            quantity: 1,
+            quantity_in_stock: product.quantityInStock,
+            width: product.width,
+            weight: product.weight
+        }]
         let params = {
             ship_unit_id: storeById.shipUnitId,
             from_district: storeById.address?.district.ghnId,
             to_district: data?.district.ghnId,
             to_ward_code: data?.ward.ghnId,
             coupon: null,
-            // insurance_value: 1200000,
-            products: [{
-                // checked: true,
-                height: product.height,
-                id: product.id,
-                id_order_detail: product.idOrderDetail,
-                id_order_detail: product.idOrderDetail,
-                length: product.length,
-                name: product.name,
-                price: product.price,
-                quantity: 1,
-                quantity_in_stock: product.quantityInStock,
-                width: product.width,
-                weight: product.weight
-            }]
+            products: products
         }
-        const res = await CartAPI.countPrice(params)
-        if (res.code === 0 && res.message === 'Success') {
-            console.log("res", res.data[0].total);
+        const res = await CartAPI.getFeesShip(params)
+        if (res.code === 0 && res.message === "Success") {
+            const body = {
+                orders: [
+                    {
+                        store_id: route.params.item.store.id,
+                        products: products,
+                        ship_price: res.data[0].total
+                    }
+                ]
+            }
+            const resCountPrie = await CartAPI.getCountPrice(body)
+            if (resCountPrie.code === 0 && resCountPrie.message === "Success") {
+                // setCountPrice(resCountPrie)
+                return resCountPrie;
+            }
+            // console.log("loggggg", countPrice);
+        } else {
+            console.log("error");
         }
+        // console.log('resCountPrie', resCountPrie);
+
     }
     const renderItem = ({ item }) => {
         switch (item.type) {

@@ -9,8 +9,12 @@ export const CartAPI = {
         const url = `/cart`;
         return APIHelper.get(url)
     },
-    async countPrice(data) {
+    async getFeesShip(data) {
         const url = `/orders/fee`;
+        return APIHelper.post(url, null, data)
+    },
+    async getCountPrice(data) {
+        const url = `/orders/count-price`;
         return APIHelper.post(url, null, data)
     }
 }
