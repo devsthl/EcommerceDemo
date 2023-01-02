@@ -120,25 +120,26 @@ const CheckOutScreen = ({ route }) => {
             products: products
         }
         const res = await CartAPI.getFeesShip(params)
-        if (res.code === 0 && res.message === "Success") {
-            const body = {
-                orders: [
-                    {
-                        store_id: route.params.item.store.id,
-                        products: products,
-                        ship_price: res.data[0].total
-                    }
-                ]
-            }
-            const resCountPrie = await CartAPI.getCountPrice(body)
-            if (resCountPrie.code === 0 && resCountPrie.message === "Success") {
-                // setCountPrice(resCountPrie)
-                return resCountPrie;
-            }
-            // console.log("loggggg", countPrice);
-        } else {
-            console.log("error");
+        // if (res.code === 0 && res.message === "Success") {
+        const body = {
+            orders: [
+                {
+                    store_id: route.params.item.store.id,
+                    products: products,
+                    ship_price: res.data[0].total
+                }
+            ]
         }
+        // setCountPrice(body)
+        const resCountPrie = await CartAPI.getCountPrice(body)
+        if (resCountPrie.code === 0 && resCountPrie.message === "Success") {
+            // return setCountPrice(resCountPrie)
+            // return resCountPrie;
+        } else {
+            console.log("erroeee");
+        }
+        // console.log("loggggg", countPrice);
+        // }
         // console.log('resCountPrie', resCountPrie);
 
     }
