@@ -1,4 +1,4 @@
-export const baseURL = 'https://api.ecommerce.smiletech.vn' // staging
+export const baseURL = 'http://api.ecommerce.smiletech.vn' // staging
 
 
 export const COMMON_MESSAGE = 'Đã có lỗi xảy ra. Xin vui lòng thử lại.';
